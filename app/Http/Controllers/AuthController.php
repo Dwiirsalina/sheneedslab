@@ -60,7 +60,7 @@ class AuthController extends Controller
     {
         if(Auth::attempt(['username' => $request->input('username'),
         'password' => $request->input('password')])){
-            return redirect('/home');
+            return redirect('/admin/dashboard');
         }
         return redirect('/login')->with('error','Username atau password salah');
     }
