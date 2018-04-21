@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 @include('layout.head')
 
 <body class="signup-page ">
@@ -90,7 +91,7 @@
                                                         <i class="material-icons">lock_outline</i>
                                                     </span>
                                                 </div>
-                                                <input type="password" placeholder="Password..." class="form-control" />
+                                                <input type="password" placeholder="Password" class="form-control" />
                                             </div>
                                         </div>
                                     </form>
