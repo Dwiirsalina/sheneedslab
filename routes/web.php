@@ -28,3 +28,5 @@ Route::post('/user/dashboard/form', 'RequestsController@createForm');
 Route::get('/user/dummy', 'RequestsController@dummyPost');
 
 Route::get('/admin/dashboard', 'AuthController@home');
+
+Route::get('/user/cetaksurat', 'SuratController@cetak');

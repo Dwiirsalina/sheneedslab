@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>Surat Izin</title>
-	<link rel="stylesheet" type="text/css" href="surat.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/surat.css')}}">
 </head>
 
 <body>
