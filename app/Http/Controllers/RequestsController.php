@@ -43,7 +43,7 @@ class RequestsController extends Controller
     		]);
     	}
     	$data['requests'] = $requests;
-    	return view('user.dummy', $data);	
+    	return view('user.dummy', $data);
     }
 
     public function createForm(Request $req)
@@ -82,7 +82,7 @@ class RequestsController extends Controller
       		]);
         }
           $data['requests'] = $requests;
-          return redirect('admin/dashboard')->with('status',1);
+          return view('admin.dashboard',$data);
     }
     public function getHistoryAdminDashboard(Request $req)
     {
@@ -95,7 +95,7 @@ class RequestsController extends Controller
         ]);
       }
        $data['requests'] = $requests;
-       return redirect('admin/dashboard')->with('status',2);
+      return view('admin.dashboard',$data);
     }
     private function insertLodger($lodger, $form_id)
     {
