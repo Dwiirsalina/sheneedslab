@@ -9,6 +9,7 @@ use App\Model\Role;
 use App\Model\Category;
 use Auth;
 use DB;
+use Uuid;
 
 class RequestsController extends Controller
 {
@@ -51,7 +52,7 @@ class RequestsController extends Controller
     	try {
      		DB::beginTransaction();
     		$new_form = new RequestForm();
-    		$new_form->user_id = 3;
+    		$new_form->user_id = Uuid::generate();
     		$new_form->date = $req['date'];
     		$new_form->category_id = $req['category'];
     		$new_form->title = $req['title'];
