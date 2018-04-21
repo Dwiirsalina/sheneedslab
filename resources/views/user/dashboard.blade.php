@@ -5,21 +5,21 @@
 
 <body class="landing-page" >
     
-    <div class="page-header header-filter" data-parallax="true" style=" background-image: url('http://localhost/sheneedslab/public/img/bg2.jpeg'); ">
+    <div class="page-header " data-parallax="true" style="margin-top:-10px; ">
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="title">She Needs Lab</h1>
+                    <h1 class="title">She Needs Lab.</h1>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="main main-raised">
-        <div class="container" style="padding-top:0.5rem">
+        <div class="container" style="padding-top:0.5rem; margin-top:30px">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create Request<i class="material-icons">assignment</i>
             </button>
-            
+           
             <div class="text-center">
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
                 <h2 class="title">Request List</h2>
@@ -39,16 +39,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{dd($requests)}}
-                                        @foreach ($requests as $request)
+                                        
+                                        @foreach ($requests as $key => $request)
                                             <tr>
-                                                <td class="text-center">1</td>
+                                                <td class="text-center">{{$key+1}}</td>
                                                 <td>{{ $request->title }}</td>
-                                                <td>{{ $request->category }}</td>
+                                                @if($request->category_id == 1)
+                                                    <td>Kuliah</td>
+                                                @else
+                                                    <td>Himpunan</td>
+                                                @endif
+                                                
+                                                
                                                 <td>{{ $request->date }}</td>
-                                                <td>{{ $request->status }}</td>
+                                                
+                                                <td>
+                                                @if ($request->status <0)
+                                                <p style="color:#d04e44"><b>ON PROCESS</b></p>REJECTED</b></p>
+                                                @elsif ($request->status >0)
+                                                <p style="color:#35b546"><b>ON PROCESS</b></p>APPROVED</b></p>
+                                                @else
+                                                <p style="color:#f4a103"><b>ON PROCESS</b></p>
+                                                @endif
+                                                </td>
+                                                    
                                                 <td class="td-actions">
-                                                    <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalDetail">
+                                                    <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#{{$request->id}}">
                                                         Detail
                                                     </button>
                                                 </td>
@@ -102,7 +118,7 @@
                     {!! csrf_field() !!}
                     <input type="hidden" value="1" id="lodgerNum">
                     <div class="">
-                        <label for="title" class="">category</label>
+                        <label for="title" class="" style="color:#009688">category</label>
                         <select name="category" class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
                             <option disabled selected> choose category</option>
                             @foreach ($category as $cat)
@@ -111,16 +127,20 @@
                         </select>
                     </div>
                     <div class="">
-                        <label for="title" class="">title</label>
+                        <label for="title" class=""style="color:#009688">title</label>
                         <input name="title" type="text" class="form-control" >
                     </div>
                     <div class="">
-                        <label for="desc" class="">desc</label>
+                        <label for="desc" class=""style="color:#009688">desc</label>
                         <textarea class="form-control" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="">
+                        <label for="title" class=""style="color:#009688">location</label>
+                        <input name="location" type="text" class="form-control" >
                     </div>
                     <div class="repeater">
                         <div class="" id="nrp1">
-                            <label class="">nrp penginap 1</label>
+                            <label class=""style="color:#009688">nrp penginap 1</label>
                             <input name="nrp[0]" type="text" placeholder="" class="form-control">
                         </div>
                     </div>
@@ -140,25 +160,82 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="modalDetail" aria-hidden="true">
+    @foreach ($requests as $request)
+    
+    <div class="modal fade" id="{{$request->id}}" tabindex="-1" role="dialog" aria-labelledby="modalDetail" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Request</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <span class="info-title" style="color:#1ab1f5">Category</span>
+                    @if($request->category_id == 1)
+                        <p>Kuliah</p>
+                    @else
+                        <p>Himpunan</p>
+                    @endif
+                <span class="info-title" style="color:#1ab1f5">title</span>
+                    <p>{{$request->title}}</p>
+                <span class="info-title" style="color:#1ab1f5">date</span>
+                    <p>{{$request->date}}</p>
+                <span class="info-title" style="color:#1ab1f5">location</span>
+                    <p>Kuliah</p>
+                <span class="info-title" style="color:#1ab1f5">description</span>
+                    <p>{{$request->description}}</p>
+                <span class="info-title" style="color:#1ab1f5">penginap</span>
+                    <p>penginap</p>
+                <div class="row">
+                    <div class="col-md-2"><span class="info-title">LP</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                    <div class="col-md-2"><span class="info-title">LP2</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                    <div class="col-md-2"><span class="info-title">IGS</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                    <div class="col-md-2"><span class="info-title">AJK</span>
+                        <p style="color:">&#10006;</p>
+                    </div>
+                    <div class="col-md-2"><span class="info-title">RPL</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                  
+                </div>   
+                <div class="row">
+                <div class="col-md-2"><span class="info-title">KCV</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                    <div class="col-md-2"><span class="info-title">NCC</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                    <div class="col-md-2"><span class="info-title">MIS</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                    <div class="col-md-2"><span class="info-title">ALPRO</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                    <div class="col-md-2"><span class="info-title">MI</span>
+                        <p style="color:#1ab1f5">&#10004;</p>
+                    </div>
+                </div>
+                <span class="info-title" style="color:#1ab1f5">alasan AJK</span>
+                    <p>deskripsi ga meyakinkan</p>
             </div>
+           
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            
             </div>
             </div>
         </div>
     </div>
+    @endforeach
     @include('layout.footer')
 
     <script type="text/javascript">
@@ -181,6 +258,7 @@
                 $("#lodgerNum").val(count);
             }
         }
+       
     </script>
 </body>
 
