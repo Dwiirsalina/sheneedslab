@@ -39,10 +39,13 @@ class RequestsController extends Controller
     		if(!$insert_lodger)
     		{
     			DB::rollback();
+    			return redirect('user/dashboard')->with('status', -2);
     		}
     	} catch (Exception $e) {
-    		
+    		DB::rollback();
+			return redirect('user/dashboard')->with('status', -1);    		
     	}
+		return redirect('user/dashboard')->with('status', 1);
     }
 
     private function insertLodger($lodger, $form_id)
