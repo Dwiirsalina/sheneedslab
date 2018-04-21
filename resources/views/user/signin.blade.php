@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 @include('layout.head')
 
@@ -34,7 +33,7 @@
             </div>
         </div>
     </nav>
-    <div class="page-header header-filter" filter-color="purple" style="background-image: url('http://localhost/sheneedslab/public/img/bg2.jpeg');"">
+    <div class="page-header header-filter" filter-color="purple" style="background-image: url('{{ url("/img/bg2.jpeg") }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
@@ -72,7 +71,11 @@
                                     </form>
                                 </div>
                             </div>
-
+                                <a class="btn btn-success btn-round" href="#" target="_blank" 
+                                    onclick="window.open('https://notify-bot.line.me/oauth/authorize?client_id=8wlegGyCdDpQvGZUUf9SPC&redirect_uri=http://192.168.33.15:8000/&response_type=code&scope=notify&state=sadf', 
+                                    'newwindow', 
+                                    'width=800,height=600'); 
+                                    return false;">Connect to LINE</a>
                                 <div class="col-md-4 mr-auto ml-auto">
                                     <br>
                                     <br>
@@ -107,6 +110,8 @@
                         </li>
                     </ul>
                 </nav>
+                <div id="test">
+                </div>
                 <div class="copyright pull-right">
                     &copy;
                     <script>
@@ -119,7 +124,6 @@
     </div>
 
 @include('layout.footer')
-
 </body>
 
 </html>

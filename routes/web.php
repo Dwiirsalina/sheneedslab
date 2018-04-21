@@ -12,11 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('user.dashboard');
+    return view('user.signin');
 });
-// Route::get('/', function () {
-//     return view('user.signin');
-// });
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login', 'AuthController@login');
