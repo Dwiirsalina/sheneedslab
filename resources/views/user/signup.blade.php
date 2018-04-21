@@ -44,6 +44,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-5 ml-auto">
+                                    @if (session('error'))
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
                                     <form class="form" method="POST" action="{{ url('/register') }}">
                                         {{csrf_field()}}
                                         <div class="form-group">
@@ -94,7 +100,6 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            {{-- <a href="#pablo" class="btn btn-primary btn-round">sign up</a> --}}
                                             <button type="SUBMIT" class="btn btn-primary btn-round">sign up</button>
                                         </div>
                                     </form>
@@ -104,7 +109,7 @@
                                     <br>
                                     <br>
                                         <div class="text-center">
-                                            Sudah punya akun? <a href="#something">Log In</a>
+                                            Sudah punya akun? <a href="{{ url('/login') }}">Log In</a>
                                         </div>
                                 </div>
                             </div>
