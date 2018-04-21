@@ -23,6 +23,8 @@ Route::post('/login', 'AuthController@login');
 Route::get('/register', 'AuthController@indexRegister');
 Route::post('/register', 'AuthController@register');
 
+Route::get('/home', 'AuthController@home');
+
 Route::get('/user/dashboard', 'RequestsController@userDashboard');
 Route::post('/user/dashboard/form', 'RequestsController@createForm');
 Route::get('/user/dummy', 'RequestsController@dummyPost');

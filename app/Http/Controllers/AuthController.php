@@ -37,7 +37,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return view('login');
+        return redirect('/login');
     }
 
     public function login(Request $request)
@@ -46,21 +46,21 @@ class AuthController extends Controller
         'password' => $request->input('password')])){
             return redirect('/home');
         }
-        return redirect('/')->with('error','Username atau password salah');
+        return redirect('/login')->with('error','Username atau password salah');
     }
 
     public function home()
     {
         $data['user'] = Auth::user();
-        switch(Auth::user()->level){
-            case 'admin':
+        switch(Auth::user()->role){
+            case 2:
                 return view('admin.index', $data);
                 break;
-            case 'kajur':
-                return view('pages.guru.index', $data);
-                break;
-            case 'user':
-                return view('pages.proktor.index', $data);
+            // case 'kajur':
+            //     return view('pages.guru.index', $data);
+            //     break;
+            case 3:
+                return view('user.dashboard', $data);
                 break;
             default:
                 Auth::logout();
