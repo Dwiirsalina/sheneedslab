@@ -6,24 +6,26 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/img/kit/free/apple-icon.png">
-    <link rel="icon" href="/img/kit/free/favicon.png">
+    <link rel="apple-touch-icon" href="{{asset('/img/kit/free/apple-icon.png')}}">
+    <link rel="icon" href="{{asset('/img/kit/free/favicon.png')}}">
     <title>
         Landing &#45; Material Kit by Creative Tim
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/material-kit.css">
+    <link rel="stylesheet" href="{{asset('/css/material-kit.css')}}">
     <!-- Documentation extras -->
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="/css/demo.css" rel="stylesheet" />
+    <link href="{{asset('/css/demo.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
     <!-- iframe removal -->
 </head>
 
 <body class="landing-page ">
     
-    <div class="page-header header-filter" data-parallax="true" style=" background-image: url('/img/bg.jpg'); ">
+    <div class="page-header header-filter" data-parallax="true" style=" background-image: url('http://localhost/sheneedslab/public/img/bg.jpg'); ">
     
         <div class="container">
             <div class="row">
@@ -85,7 +87,7 @@
                             <div class="team-player">
                                 <div class="card card-plain">
                                     <div class="col-md-6 ml-auto mr-auto">
-                                        <img src="../assets/img/kit/faces/avatar.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                        <img src="{{asset('/img/kit/faces/avatar.jpg')}}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                                     </div>
                                     <h4 class="card-title">Gigi Hadid
                                         <br>
@@ -107,7 +109,7 @@
                             <div class="team-player">
                                 <div class="card card-plain">
                                     <div class="col-md-6 ml-auto mr-auto">
-                                        <img src="/img/kit/faces/christian.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                        <img src="{{asset('/img/kit/faces/christian.jpg')}}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                                     </div>
                                     <h4 class="card-title">Christian Louboutin
                                         <br>
@@ -128,7 +130,7 @@
                             <div class="team-player">
                                 <div class="card card-plain">
                                     <div class="col-md-6 ml-auto mr-auto">
-                                        <img src="/img/kit/faces/kendall.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                                        <img src="" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                                     </div>
                                     <h4 class="card-title">Kendall Jenner
                                         <br>
@@ -222,19 +224,11 @@
         </div>
     </footer>
     <!--   Core JS Files   -->
-    <script src="/js/core/jquery.min.js"></script>
-    <script src="/js/core/popper.min.js"></script>
-    <script src="/js/bootstrap-material-design.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-    <script src="/js/plugins/moment.min.js"></script>
-    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script src="/js/plugins/bootstrap-datetimepicker.min.js"></script>
-    <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="/js/plugins/nouislider.min.js"></script>
-    <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-    <script src="/js/material-kit.js"></script>
-    <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-    <script src="/js/material-kit-demo.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
 </body>
 
 </html>
