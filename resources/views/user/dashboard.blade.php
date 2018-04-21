@@ -39,6 +39,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{dd($requests)}}
                                         @foreach ($requests as $request)
                                             <tr>
                                                 <td class="text-center">1</td>
@@ -103,11 +104,11 @@
                     <div class="">
                         <label for="title" class="">category</label>
                         <select name="category" class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
-                            <option disabled selected> Choose Category</option>
+                            <option disabled selected> choose category</option>
                             @foreach ($category as $cat)
                             <option value="1">{{$cat->name}}</option>
                             @endforeach
-                    </select>
+                        </select>
                     </div>
                     <div class="">
                         <label for="title" class="">title</label>
@@ -116,15 +117,15 @@
                     <div class="">
                         <label for="desc" class="">desc</label>
                         <textarea class="form-control" name="description" rows="3"></textarea>
-            
                     </div>
                     <div class="repeater">
                         <div class="" id="nrp1">
-                            <input name="nrp[0]" type="text" placeholder="Masukkan Nrp Penginap 1" class="form-control">
+                            <label class="">nrp penginap 1</label>
+                            <input name="nrp[0]" type="text" placeholder="" class="form-control">
                         </div>
                     </div>
-                    <input data-repeater-create type="button" id="addButton" class="btn btn-primary" value="Add" onclick="addLodger();"/>
-                    <input type="button" id="minButton" class="btn btn-primary"value="Reduce" onclick="minLodger();">
+                    <input data-repeater-create type="button" id="addButton" class="btn btn-primary" value="+" onclick="addLodger();"/>
+                    <input type="button" id="minButton" class="btn btn-primary"value="-" onclick="minLodger();">
                 </div>
                 <div class="modal-footer">
                 <p class="form-submit">
@@ -165,7 +166,8 @@
             var count = $("#lodgerNum").val();
             count++;
             $(".repeater").append(`<div class="" id="nrp`+count+`"><span class="bmd-form-group">
-                            <input name="nrp[`+(count-1)+`]" type="text" placeholder="Masukkan Nrp Penginap `+count+`" class="form-control">
+                            <label class="">nrp penginap `+count+`</label>
+                            <input name="nrp[`+(count-1)+`]" type="text" placeholder="" class="form-control">
                             </span>
                         </div>`);
             $("#lodgerNum").val(count);
