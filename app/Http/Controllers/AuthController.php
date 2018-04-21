@@ -48,11 +48,12 @@ class AuthController extends Controller
     protected function checkUsername($username)
     {
         $user = User::where('username',$username)->get();
-        if ($user) {
+        if ($user==null) {
             return TRUE;
         }
-        else
+        else {
            return FALSE;
+        }
     }
 
     public function login(Request $request)
