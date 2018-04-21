@@ -32,4 +32,4 @@ Route::get('/user/dummy', 'RequestsController@dummyPost');
 // Route::get('/admin/dashboard', 'AuthController@home');
 Route::get('/admin/dashboard', 'AdminController@getHistoryAdminDashboard');
 
-Route::get('/user/cetaksurat', 'SuratController@cetak');
+Route::get('/user/cetaksurat/{id}', 'SuratController@cetak');

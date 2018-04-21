@@ -38,11 +38,13 @@
 			<p>Berikut nama-nama mahasiswa tersebut:</p>
 			<p>Nama:</p>
 			<ol>
-				<li>Dewi</li>
-				<li>Ayu</li>
-				<li>Tzuyu</li>
-				<li>Dahyun</li>
-				<li>Melody</li>
+				<?php foreach($lodgers as $lodger) {?>
+					<li>
+						<?php if ($lodger->user['role_id'] == 3) {
+							echo $lodger->user['username'] . ' ' . $lodger->user['name'];
+						}?>						
+					</li>
+				<?php } ?>
 			</ol>
 			<p>Atas perhatiannya kami ucapkan terima kasih</p>
 			<p>Wassalamualaikum wr.wb</p>
