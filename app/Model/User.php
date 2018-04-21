@@ -14,8 +14,10 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'users';
-    
+    protected $table = 'user';
+    protected $primaryKey = 'id';
+    public $incrementing = true;
+    public $timestamp = true;
 
     /**
      * The attributes that are mass assignable.
@@ -34,4 +36,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function role(){
+        return $this->hasOne('App\Model\Role', 'id', 'id');
+    }
+
+    public function lodgers(){
+        return $this->hasMany('App\Model\Lodger', 'user_id', 'id');
+    }
+
+    public function statuss(){
+        return $this->hasMany('App\Model\Status', 'user_id', 'id');
+    }
 }

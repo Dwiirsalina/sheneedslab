@@ -1,9 +1,34 @@
 <!DOCTYPE html>
 <head>
 	<title>Surat Izin</title>
-	<link rel="stylesheet" type="text/css" href="surat.css">
-</head>
+	<style>
+		
+		body{
+			margin:20px;
+		}
 
+		.surat { width: 600px; margin: 0 auto; }
+		
+		h1 { 
+			height: 40px; 
+			width: 100%; 
+			background: #222; 
+			text-align: center;
+			color: white; 
+			text-decoration: uppercase; 
+			letter-spacing: 10px; 
+			padding: 8px 0px;
+		}
+
+		.isi{
+			text-align:justify;
+			font-size: 20px;	
+			margin: 10px;
+			padding-top:20px;
+		}
+
+	</style>
+</head>
 <body>
 	<div class="surat">
 		<h1>Surat Izin Menginap</h1>
