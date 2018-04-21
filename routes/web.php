@@ -14,6 +14,14 @@
 Route::get('/', function () {
     return view('user.dashboard');
 });
+// Route::get('/', function () {
+//     return view('user.signin');
+// });
+
+Route::get('/login', 'AuthController@index');
+Route::post('/login', 'AuthController@login');
+Route::get('/register', 'AuthController@indexRegister');
+Route::post('/register', 'AuthController@register');
 
 Route::get('/user/dashboard', 'RequestsController@userDashboard');
 Route::post('/user/dashboard/form', 'RequestsController@createForm');

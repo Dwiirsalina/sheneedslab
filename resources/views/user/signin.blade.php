@@ -43,10 +43,17 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-8 ml-auto mr-auto">
-                                    <form class="form" method="" action="">
+                                    @if (session('error'))
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+                                    <form class="form" method="POST" action="{{ url('/login') }}">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="NRP">
+                                                <input type="text" class="form-control" placeholder="Username" name="username">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -56,8 +63,12 @@
                                                         <i class="material-icons">lock_outline</i>
                                                     </span>
                                                 </div>
-                                                <input type="password" placeholder=" Password" class="form-control" />
+                                                <input type="password" placeholder=" Password" class="form-control" name="password" />
                                             </div>
+                                        </div>
+                                        <div class="text-center">
+                                            {{-- <a href="#pablo" class="btn btn-primary btn-round">sign in</a> --}}
+                                            <button type="SUBMIT" class="btn btn-primary btn-round">sign in </button>
                                         </div>
                                     </form>
                                 </div>
@@ -67,10 +78,7 @@
                                     <br>
                                     <br>
                                         <div class="text-center">
-                                            Belum punya akun? <a href="#something">Sign Up</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#pablo" class="btn btn-primary btn-round">sign in</a>
+                                            Belum punya akun? <a href="{{ url('/register') }}">Sign Up</a>
                                         </div>
                                 </div>
                             </div>

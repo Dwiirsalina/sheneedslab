@@ -44,26 +44,25 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-5 ml-auto">
-                                    <form class="form" method="" action="">
+                                    <form class="form" method="POST" action="{{ url('/register') }}">
+                                        {{csrf_field()}}
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="NRP">
+                                                <input type="text" class="form-control" placeholder="NRP" name="username">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Nama Lengkap">
+                                                <input type="text" class="form-control" placeholder="Nama Lengkap" name="name">
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <div class="input-group">
                                                 <input type="dropdown-menu" class="form-control" placeholder="Role">
                                             </div>
-                                        </div>
-                                    </form>
+                                        </div> --}}
                                 </div>
                                 <div class="col-md-5 mr-auto">
-                                    <form class="form" method="" action="">
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
@@ -71,7 +70,7 @@
                                                         <i class="material-icons">mail</i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="Email">
+                                                <input type="text" class="form-control" placeholder="Email" name="email">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -81,7 +80,7 @@
                                                         <i class="material-icons">phone</i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="Nomor HP">
+                                                <input type="text" class="form-control" placeholder="Nomor HP" name="no_hp">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -91,8 +90,12 @@
                                                         <i class="material-icons">lock_outline</i>
                                                     </span>
                                                 </div>
-                                                <input type="password" placeholder="Password" class="form-control" />
+                                                <input type="password" placeholder="Password..." class="form-control" name="password" />
                                             </div>
+                                        </div>
+                                        <div class="text-center">
+                                            {{-- <a href="#pablo" class="btn btn-primary btn-round">sign up</a> --}}
+                                            <button type="SUBMIT" class="btn btn-primary btn-round">sign up</button>
                                         </div>
                                     </form>
                                 </div>
@@ -101,10 +104,7 @@
                                     <br>
                                     <br>
                                         <div class="text-center">
-                                            SUdah punya akun? <a href="#something">Log In</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#pablo" class="btn btn-primary btn-round">sign up</a>
+                                            Sudah punya akun? <a href="#something">Log In</a>
                                         </div>
                                 </div>
                             </div>
