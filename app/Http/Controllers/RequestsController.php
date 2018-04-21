@@ -17,7 +17,7 @@ class RequestsController extends Controller
     	} catch (Exception $e) {
     		return json_encode([
     			'status' => 500,
-    			'error' => 'Error Server'
+    			'error' => $e
     		]);
     	}
     	$data['requests'] = $requests;
@@ -27,7 +27,7 @@ class RequestsController extends Controller
     public function createForm(Request $req)
     {
     	try {
-    		DB::beginTransaction();	
+    		DB::beginTransaction();
     		$new_form = new RequestForm();
     		$new_form->user_id = Auth::user()->id;
     		$new_form->date = $req['date'];
@@ -47,7 +47,19 @@ class RequestsController extends Controller
     	}
 		return redirect('user/dashboard')->with('status', 1);
     }
-
+    public function adminDashboard(Request $req)
+    {
+        try {
+          $requests = RequestForm::where('status',0)->orderBy('created_at');
+        } catch (Exception $e) {
+          return json_encode([
+      			'status' => 500,
+      			'error' => $e
+      		]);
+        }
+          $data['requests'] = $requests;
+          return view('admin.dashboard',$data);
+    }
     private function insertLodger($lodger, $form_id)
     {
     	try {
