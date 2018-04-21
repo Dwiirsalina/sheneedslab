@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('user.signin');
+    return view('user.dashboard');
 });
 
 Route::get('/user/dashboard', 'RequestsController@userDashboard');

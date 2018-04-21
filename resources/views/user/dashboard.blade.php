@@ -16,14 +16,76 @@
     </div>
     <div class="main main-raised">
         <div class="container" style="padding-top:0.5rem">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
+                <i class="material-icons">assignment</i>
+                Create Request
+            </button>
+            
             <div class="text-center">
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
+                <h2 class="title">Request List</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <div class="team-player"> -->
+                                <div class="card card-plain">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($requests as $request)
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>{{ $request->title }}</td>
+                                            <td>{{ $request->category }}</td>
+                                            <td>{{ $request->date }}</td>
+                                            <td>{{ $request->status }}</td>
+                                            <td class="td-actions">
+                                                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalDetail">
+                                                    Detail
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>  
+                                <nav aria-label="...">
 
-<button class="btn btn-round" data-toggle="modal" data-target="#signupModal">
-    <i class="material-icons">assignment</i>
-    SignUp
-</button>
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                        
+                                        <span class="page-link">{{ $requests->links() }}Previous</span>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active">
+                                        <span class="page-link">
+                                            2
+                                            <span class="sr-only">(current)</span>
+                                        </span>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                </div>
+                                <!-- Large modal -->
 
+                            <!-- </div> -->
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-signup" role="document">
     <div class="modal-content">
@@ -36,45 +98,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-5 ml-auto">
-              <div class="info info-horizontal">
-                <div class="icon icon-rose">
-                  <i class="material-icons">timeline</i>
-                </div>
-                <div class="description">
-                  <h4 class="info-title">Marketing</h4>
-                  <p class="description">
-                  We've created the marketing campaign of the website. It was a very interesting collaboration.
-                  </p>
-                </div>
-              </div>
-
-              <div class="info info-horizontal">
-                <div class="icon icon-primary">
-                  <i class="material-icons">code</i>
-                </div>
-                <div class="description">
-                  <h4 class="info-title">Fully Coded in HTML5</h4>
-                  <p class="description">
-                  We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
-                  </p>
-                </div>
-              </div>
-
-              <div class="info info-horizontal">
-                <div class="icon icon-info">
-                  <i class="material-icons">group</i>
-                </div>
-                <div class="description">
-                  <h4 class="info-title">Built Audience</h4>
-                  <p class="description">
-                  There is also a Fully Customizable CMS Admin Dashboard for this product.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-5 mr-auto">
+            <div class="col-md-12 mr-auto">
               <div class="social text-center">
                 <button class="btn btn-just-icon btn-round btn-twitter">
                   <i class="fa fa-twitter"></i>
@@ -138,74 +162,28 @@
     </div>
   </div>
 </div>
-                <h2 class="title">Request List</h2>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- <div class="team-player"> -->
-                                <div class="card card-plain">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">#</th>
-                                            <th>Name</th>
-                                            <th>Job Position</th>
-                                            <th>Since</th>
-                                            <th class="text-right">Salary</th>
-                                            <th class="text-right">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>Andrew Mike</td>
-                                            <td>Develop</td>
-                                            <td>2013</td>
-                                            <td class="text-right">&euro; 99,225</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" class="btn btn-info">
-                                                    <i class="material-icons">person</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" class="btn btn-success">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" class="btn btn-danger">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>  
-                                <nav aria-label="...">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                        <span class="page-link">Previous</span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active">
-                                        <span class="page-link">
-                                            2
-                                            <span class="sr-only">(current)</span>
-                                        </span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                </div>
-                                <!-- Large modal -->
-
-                            <!-- </div> -->
-                        </div>
-                    </div>
-            </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="modalDetail" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
         </div>
     </div>
+    </div>
     @include('layout.footer')
-<script>
-    $('#signupModal').modal('static')
-</script>
+
 
 </body>
 

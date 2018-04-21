@@ -27,7 +27,7 @@ class RequestsController extends Controller
     		]);
     	}
 			$data['requests'] = $requests;
-			dd($requests);
+			// dd($data);
     	return view('user.dashboard', $data);
     }
 
