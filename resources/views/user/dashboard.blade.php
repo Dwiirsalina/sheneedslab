@@ -17,7 +17,7 @@
 
     <div class="main main-raised">
         <div class="container" style="padding-top:0.5rem">
-            <button class="btn btn-round" data-toggle="modal" data-target="#modalCreate">Login<i class="material-icons">assignment</i>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create Request<i class="material-icons">assignment</i>
             </button>
             
             <div class="text-center">
@@ -90,56 +90,48 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create Request</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form class="form" role="form" method="POST" action="{{url('user/dashboard/form')}}">
+            <form class="form" role="form" method="POST" action="{{url('user/dashboard/form')}}">
+                <div class="modal-body">
+                
                     {!! csrf_field() !!}
+                    <input type="hidden" value="1" id="lodgerNum">
+                    <div class="">
+                        <label for="title" class="">category</label>
+                        <select name="category" class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
+                            <option disabled selected> Choose Category</option>
+                            @foreach ($category as $cat)
+                            <option value="1">{{$cat->name}}</option>
+                            @endforeach
+                    </select>
+                    </div>
                     <div class="">
                         <label for="title" class="">title</label>
                         <input name="title" type="text" class="form-control" >
                     </div>
                     <div class="">
                         <label for="desc" class="">desc</label>
-                        <textarea class="form-control" name="description" rows="2"></textarea>
+                        <textarea class="form-control" name="description" rows="3"></textarea>
             
                     </div>
-                    <div class="">
-                        <label for="title" class="">category</label>
-                        <input name="category" type="text" class="form-control" >
+                    <div class="repeater">
+                        <div class="" id="nrp1">
+                            <input name="nrp[0]" type="text" placeholder="Masukkan Nrp Penginap 1" class="form-control">
+                        </div>
                     </div>
-                    <div class="">
-                        <label for="title" class="">date</label>
-                        <input name="date" type="text" class="form-control" >
-                    </div>
-                    <div class="">
-                        <label for="title" class="">nrp</label>
-                        <input name="lodger[0]" type="text" class="form-control" >
-                    </div>
-                    <div class="">
-                        <label for="title" class="">nrp</label>
-                        <input name="lodger[1]" type="text" class="form-control" >
-                    </div>
-                    <div class="">
-                        <label for="title" class="">nrp</label>
-                        <input name="lodger[2]" type="text" class="form-control" >
-                    </div>
-                    <div>
-                        <p class="form-submit">
-                            <input name="submit" type="submit" id="submit" class="submit submit-button" value="Login" />
-                            <input type='hidden' name='comment_post_ID' value='2' id='comment_post_ID' />
-                            <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
-                        </p>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                    <input data-repeater-create type="button" id="addButton" class="btn btn-primary" value="Add" onclick="addLodger();"/>
+                    <input type="button" id="minButton" class="btn btn-primary"value="Reduce" onclick="minLodger();">
+                </div>
+                <div class="modal-footer">
+                <p class="form-submit">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input name="submit" type="submit" id="submit"  class="btn btn-primary" value="Submit"/>
+                </div>
+            </form>
             </div>
         </div>
     </div>
@@ -168,7 +160,26 @@
     </div>
     @include('layout.footer')
 
+    <script type="text/javascript">
+        function addLodger(){
+            var count = $("#lodgerNum").val();
+            count++;
+            $(".repeater").append(`<div class="" id="nrp`+count+`"><span class="bmd-form-group">
+                            <input name="nrp[`+(count-1)+`]" type="text" placeholder="Masukkan Nrp Penginap `+count+`" class="form-control">
+                            </span>
+                        </div>`);
+            $("#lodgerNum").val(count);
+        }
+        function minLodger(){
+            var count = $("#lodgerNum").val();
 
+            if(count > 1){
+                $("#nrp"+count).remove();
+                count--;
+                $("#lodgerNum").val(count);
+            }
+        }
+    </script>
 </body>
 
 </html>
