@@ -62,6 +62,8 @@ class RequestsController extends Controller
     		$new_form->title = $req['title'];
     		$new_form->description = $req['description'];
     		$new_form->save();
+            $new_form->slug = substr(bcrypt(Auth::user()->id), 0, 100).substr(bcrypt($new_form->created_at), 0, 10);
+            $new_form->save();
             $form_id = $new_form->id;
     		$insert_lodger = $this->insertLodger($req['lodger'], $form_id);
     		if(!$insert_lodger)
