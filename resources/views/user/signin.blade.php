@@ -39,48 +39,14 @@
             <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
                     <div class="card card-signup">
-                        <h2 class="card-title text-center">Register</h2>
+                        <h2 class="card-title text-center">Sign In</h2>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-5 ml-auto">
+                                <div class="col-md-8 ml-auto mr-auto">
                                     <form class="form" method="" action="">
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="NRP">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Nama Lengkap">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input type="dropdown-menu" class="form-control" placeholder="Role">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-5 mr-auto">
-                                    <form class="form" method="" action="">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons">mail</i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="material-icons">phone</i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="Nomor HP">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -90,20 +56,21 @@
                                                         <i class="material-icons">lock_outline</i>
                                                     </span>
                                                 </div>
-                                                <input type="password" placeholder="Password..." class="form-control" />
+                                                <input type="password" placeholder=" Password" class="form-control" />
                                             </div>
                                         </div>
                                     </form>
                                 </div>
+                            </div>
 
                                 <div class="col-md-4 mr-auto ml-auto">
                                     <br>
                                     <br>
                                         <div class="text-center">
-                                            SUdah punya akun? <a href="#something">Log In</a>
+                                            Belum punya akun? <a href="#something">Sign Up</a>
                                         </div>
                                         <div class="text-center">
-                                            <a href="#pablo" class="btn btn-primary btn-round">sign up</a>
+                                            <a href="#pablo" class="btn btn-primary btn-round">sign in</a>
                                         </div>
                                 </div>
                             </div>
