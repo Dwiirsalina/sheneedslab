@@ -20,6 +20,11 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
+            $isDuplicate = $this->checkUsername($request->username);
+            if ($isDuplicate) {
+                return redirect('/register')->with('error','NRP sudah pernah terdaftar !');
+            }
+
             $user = new User();
             $user->username = $request->username;
             $user->password = bcrypt($request->password);
@@ -38,6 +43,16 @@ class AuthController extends Controller
         }
 
         return redirect('/login');
+    }
+
+    protected function checkUsername($username)
+    {
+        $user = User::where('username',$username)->get();
+        if ($user) {
+            return TRUE;
+        }
+        else
+           return FALSE;
     }
 
     public function login(Request $request)
