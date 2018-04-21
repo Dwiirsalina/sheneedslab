@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('user.dashboard');
+    return view('user.testmodal');
 });
 // Route::get('/', function () {
 //     return view('user.signin');
@@ -30,5 +30,6 @@ Route::post('/user/dashboard/form', 'RequestsController@createForm');
 Route::get('/user/dummy', 'RequestsController@dummyPost');
 
 Route::get('/admin/dashboard', 'AuthController@home');
+Route::get('/admin/history', 'AdminController@getHistoryAdminDashboard');
 
 Route::get('/user/cetaksurat', 'SuratController@cetak');

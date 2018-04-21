@@ -28,7 +28,7 @@ class AuthController extends Controller
             $user = new User();
             $user->username = $request->username;
             $user->password = bcrypt($request->password);
-            $user->role = 3;
+            $user->role_id = 3;
             $user->name = $request->name;
             $user->no_hp = $request->no_hp;
             $user->email = $request->email;
@@ -68,15 +68,16 @@ class AuthController extends Controller
     public function home()
     {
         $data['user'] = Auth::user();
-        switch(Auth::user()->role){
+        // dd(Auth::user());
+        switch(Auth::user()->role_id){
             case 2:
-                return view('admin.index', $data);
+                return redirect('/admin/dashboard');
                 break;
             // case 'kajur':
             //     return view('pages.guru.index', $data);
             //     break;
             case 3:
-                return view('user.dashboard', $data);
+                return redirect('/user/dashboard');
                 break;
             default:
                 Auth::logout();

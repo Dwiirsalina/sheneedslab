@@ -4,9 +4,9 @@
     @include('layout.head')
 
 <body class="landing-page" >
-    <div class="page-header header-filter" data-parallax="true" 
-    style=" background-image: url('http://localhost/sheneedslab/public/img/bg2.jpeg'); ">
-    <div class="container text-center">
+    
+    <div class="page-header header-filter" data-parallax="true" style=" background-image: url('http://localhost/sheneedslab/public/img/bg2.jpeg'); ">
+        <div class="container text-center">
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="title">She Needs Lab</h1>
@@ -14,11 +14,10 @@
             </div>
         </div>
     </div>
+
     <div class="main main-raised">
         <div class="container" style="padding-top:0.5rem">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
-                <i class="material-icons">assignment</i>
-                Create Request
+            <button class="btn btn-round" data-toggle="modal" data-target="#modalCreate">Login<i class="material-icons">assignment</i>
             </button>
             
             <div class="text-center">
@@ -40,19 +39,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($requests as $request)
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>{{ $request->title }}</td>
-                                            <td>{{ $request->category }}</td>
-                                            <td>{{ $request->date }}</td>
-                                            <td>{{ $request->status }}</td>
-                                            <td class="td-actions">
-                                                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalDetail">
-                                                    Detail
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        @foreach ($requests as $request)
+                                            <tr>
+                                                <td class="text-center">1</td>
+                                                <td>{{ $request->title }}</td>
+                                                <td>{{ $request->category }}</td>
+                                                <td>{{ $request->date }}</td>
+                                                <td>{{ $request->status }}</td>
+                                                <td class="td-actions">
+                                                    <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalDetail">
+                                                        Detail
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>  
@@ -85,102 +84,87 @@
             </div>
         </div>
     </div>
-<!-- Modal -->
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-signup" role="document">
-    <div class="modal-content">
-      <div class="card card-signup card-plain">
-        <div class="modal-header">
-          <h5 class="modal-title card-title">Register</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="material-icons">clear</i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12 mr-auto">
-              <div class="social text-center">
-                <button class="btn btn-just-icon btn-round btn-twitter">
-                  <i class="fa fa-twitter"></i>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
                 </button>
-                <button class="btn btn-just-icon btn-round btn-dribbble">
-                  <i class="fa fa-dribbble"></i>
-                </button>
-                <button class="btn btn-just-icon btn-round btn-facebook">
-                  <i class="fa fa-facebook"> </i>
-                </button>
-                <h4> or be classical </h4>
-              </div>
-
-              <form class="form" method="" action="">
-                <div class="card-body">
-                  <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">face</i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="First Name...">
-                    </div>
-                  </div>
-
-                <div class="form-group">
-                  <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="material-icons">email</i>
-                      </span>
-                      <input type="text" class="form-control" placeholder="Email...">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="material-icons">lock_outline</i>
-                      </span>
-                      <input type="password" placeholder="Password..." class="form-control" />
-                  </div>
-                </div>
-
-                <div class="form-check">
-                  <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" value="" checked>
-                      <span class="form-check-sign">
-                          <span class="check"></span>
-                      </span>
-                      I agree to the <a href="#something">terms and conditions</a>.
-                  </label>
-                </div>
-                </div>
-              <div class="modal-footer justify-content-center">
-              <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
-              </div>
-              </form>
             </div>
-          </div>
+            <div class="modal-body">
+                <form class="form" role="form" method="POST" action="{{url('user/dashboard/form')}}">
+                    {!! csrf_field() !!}
+                    <div class="">
+                        <label for="title" class="">title</label>
+                        <input name="title" type="text" class="form-control" >
+                    </div>
+                    <div class="">
+                        <label for="desc" class="">desc</label>
+                        <textarea class="form-control" name="description" rows="2"></textarea>
+            
+                    </div>
+                    <div class="">
+                        <label for="title" class="">category</label>
+                        <input name="category" type="text" class="form-control" >
+                    </div>
+                    <div class="">
+                        <label for="title" class="">date</label>
+                        <input name="date" type="text" class="form-control" >
+                    </div>
+                    <div class="">
+                        <label for="title" class="">nrp</label>
+                        <input name="lodger[0]" type="text" class="form-control" >
+                    </div>
+                    <div class="">
+                        <label for="title" class="">nrp</label>
+                        <input name="lodger[1]" type="text" class="form-control" >
+                    </div>
+                    <div class="">
+                        <label for="title" class="">nrp</label>
+                        <input name="lodger[2]" type="text" class="form-control" >
+                    </div>
+                    <div>
+                        <p class="form-submit">
+                            <input name="submit" type="submit" id="submit" class="submit submit-button" value="Login" />
+                            <input type='hidden' name='comment_post_ID' value='2' id='comment_post_ID' />
+                            <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+
+
+
     <!-- Modal -->
     <div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="modalDetail" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
         </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-        </div>
-    </div>
     </div>
     @include('layout.footer')
 
