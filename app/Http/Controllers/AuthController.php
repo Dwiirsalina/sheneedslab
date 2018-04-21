@@ -21,21 +21,6 @@ class AuthController extends Controller
         return redirect('/')->with('error','User atau password salah');
     }
 
-    public function register(Request $request)
-    {
-        $user = new User();
-        $user->username = $request->username;
-        $user->password = bcrypt($request->password);
-        // $user->role = 
-        $user->name = $request->name;
-        $user->no_hp = $request->no_hp;
-        $user->email = $request->email;
-        $user->line = $request->line;
-        $user->save();
-
-        return view('login');
-    }
-
     public function home()
     {
         $data['user'] = Auth::user();

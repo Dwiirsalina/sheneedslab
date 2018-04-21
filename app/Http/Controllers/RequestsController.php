@@ -27,7 +27,7 @@ class RequestsController extends Controller
     public function createForm(Request $req)
     {
     	try {
-    		DB::beginTransaction();
+     		DB::beginTransaction();
     		$new_form = new RequestForm();
     		$new_form->user_id = Auth::user()->id;
     		$new_form->date = $req['date'];
@@ -45,8 +45,10 @@ class RequestsController extends Controller
     		DB::rollback();
 			return redirect('user/dashboard')->with('status', -1);
     	}
+        DB::commit();
 		return redirect('user/dashboard')->with('status', 1);
     }
+
     public function getRequestAdminDashboard(Request $req)
     {
         try {
