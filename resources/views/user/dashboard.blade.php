@@ -39,19 +39,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($requests as $request)
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>{{ $request->title }}</td>
-                                            <td>{{ $request->category }}</td>
-                                            <td>{{ $request->date }}</td>
-                                            <td>{{ $request->status }}</td>
-                                            <td class="td-actions">
-                                                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalDetail">
-                                                    Detail
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        @foreach ($requests as $request)
+                                            <tr>
+                                                <td class="text-center">1</td>
+                                                <td>{{ $request->title }}</td>
+                                                <td>{{ $request->category }}</td>
+                                                <td>{{ $request->date }}</td>
+                                                <td>{{ $request->status }}</td>
+                                                <td class="td-actions">
+                                                    <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalDetail">
+                                                        Detail
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>  

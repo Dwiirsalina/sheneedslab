@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RequestForm extends Model
 {
-    protected $table = 'requests';
+    protected $table = 'request';
 
     public function people()
     {
