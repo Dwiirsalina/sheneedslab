@@ -47,10 +47,10 @@ class RequestsController extends Controller
     	}
 		return redirect('user/dashboard')->with('status', 1);
     }
-    public function adminDashboard(Request $req)
+    public function getRequestAdminDashboard(Request $req)
     {
         try {
-          $requests = RequestForm::where('status',0)->orderBy('created_at')->paginate(15);
+          $requests = RequestForm::where('status',1)->orderBy('created_at')->paginate(15);
         } catch (Exception $e) {
           return json_encode([
       			'status' => 500,
@@ -58,7 +58,20 @@ class RequestsController extends Controller
       		]);
         }
           $data['requests'] = $requests;
-          return view('admin.dashboard',$data);
+          return redirect('admin/dashboard')->with('status',1);
+    }
+    public function getHistoryAdminDashboard(Request $req)
+    {
+      try {
+        $newReq = RequestForm::where('status',2)->orderBy('created_at')->paginate(15);
+      } catch (Exception $e) {
+        return json_encode([
+          'status' => 500,
+          'error' => $e
+        ]);
+      }
+       $data['requests'] = $requests;
+       return redirect('admin/dashboard')->with('status',2);
     }
     private function insertLodger($lodger, $form_id)
     {
