@@ -67,7 +67,6 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            {{-- <a href="#pablo" class="btn btn-primary btn-round">sign in</a> --}}
                                             <button type="SUBMIT" class="btn btn-primary btn-round">sign in </button>
                                         </div>
                                     </form>
