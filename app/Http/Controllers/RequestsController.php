@@ -16,7 +16,11 @@ class RequestsController extends Controller
     public function userDashboard(Request $req)
     {
     	try {
+<<<<<<< Updated upstream
     		$requests = RequestForm::where('user_id', 1)->with('lodger')->paginate(15);
+=======
+    		$requests = RequestForm::where('user_id', Auth::user()->id)->with('lodgers')->paginate(15);
+>>>>>>> Stashed changes
     		$data['roles'] = Role::get();
     		$data['category'] = Category::get();
 
@@ -52,9 +56,10 @@ class RequestsController extends Controller
     {
     	try {
      		DB::beginTransaction();
-            $user_id = Auth::user()->id;
+						$user_id = Auth::user()->id;
+						$id=Uuid::generate();
     		$new_form = new RequestForm();
-            $new_form->id = Uuid::generate();
+            $new_form->id = $id;
     		$new_form->user_id = $user_id;
     		$new_form->date = $req['date'];
             $new_form->status = 0;
@@ -62,8 +67,9 @@ class RequestsController extends Controller
     		$new_form->title = $req['title'];
     		$new_form->description = $req['description'];
     		$new_form->save();
-            $form_id = $new_form->id;
-    		$insert_lodger = $this->insertLodger($req['lodger'], $form_id);
+						$form_id = $new_form->id;
+						// dd($id);
+    		$insert_lodger = $this->insertLodger($req['nrp'], $id);
     		if(!$insert_lodger)
     		{
     			DB::rollback();
