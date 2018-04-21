@@ -43,14 +43,14 @@ class RequestsController extends Controller
     		}
     	} catch (Exception $e) {
     		DB::rollback();
-			return redirect('user/dashboard')->with('status', -1);    		
+			return redirect('user/dashboard')->with('status', -1);
     	}
 		return redirect('user/dashboard')->with('status', 1);
     }
     public function adminDashboard(Request $req)
     {
         try {
-          $requests = RequestForm::where('status',0)->orderBy('created_at');
+          $requests = RequestForm::where('status',0)->orderBy('created_at')->paginate(15);
         } catch (Exception $e) {
           return json_encode([
       			'status' => 500,
