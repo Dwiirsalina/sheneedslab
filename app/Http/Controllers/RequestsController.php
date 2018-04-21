@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\RequestForm;
 use App\Model\Lodger;
+use App\Model\Role;
+use App\Model\Category;
 use Auth;
 use DB;
 
@@ -14,6 +16,9 @@ class RequestsController extends Controller
     {
     	try {
     		$requests = RequestForm::where('user_id', 1)->with('people')->paginate(15);
+    		$data['roles'] = Role::get();
+    		$data['category'] = Category::get();
+
     	} catch (Exception $e) {
     		return json_encode([
     			'status' => 500,
@@ -25,12 +30,28 @@ class RequestsController extends Controller
     	return view('user.dashboard', $data);
     }
 
+    public function dummyPost()
+    {
+    	try {
+    		$requests = RequestForm::where('user_id', 1)->with('people')->paginate(15);
+    		$data['roles'] = Role::get();
+    		$data['category'] = Category::get();
+    	} catch (Exception $e) {
+    		return json_encode([
+    			'status' => 500,
+    			'error' => $e
+    		]);
+    	}
+    	$data['requests'] = $requests;
+    	return view('user.dummy', $data);
+    }
+
     public function createForm(Request $req)
     {
     	try {
      		DB::beginTransaction();
     		$new_form = new RequestForm();
-    		$new_form->user_id = Auth::user()->id;
+    		$new_form->user_id = 3;
     		$new_form->date = $req['date'];
     		$new_form->category_id = $req['category'];
     		$new_form->title = $req['title'];
@@ -61,7 +82,7 @@ class RequestsController extends Controller
       		]);
         }
           $data['requests'] = $requests;
-          return redirect('admin/dashboard')->with('status',1);
+          return view('admin.dashboard',$data);
     }
     public function getHistoryAdminDashboard(Request $req)
     {
@@ -74,7 +95,7 @@ class RequestsController extends Controller
         ]);
       }
        $data['requests'] = $requests;
-       return redirect('admin/dashboard')->with('status',2);
+      return view('admin.dashboard',$data);
     }
     private function insertLodger($lodger, $form_id)
     {

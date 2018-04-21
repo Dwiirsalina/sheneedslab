@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('user.signup');
+    return view('user.signin');
 });
 
 Route::get('/user/dashboard', 'RequestsController@userDashboard');
 Route::post('/user/dashboard/form', 'RequestsController@createForm');
+Route::get('/user/dummy', 'RequestsController@dummyPost');
