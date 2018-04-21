@@ -16,7 +16,7 @@ class RequestsController extends Controller
     public function userDashboard(Request $req)
     {
     	try {
-    		$requests = RequestForm::where('user_id', 1)->with('people')->paginate(15);
+    		$requests = RequestForm::where('user_id', 1)->with('lodger')->paginate(15);
     		$data['roles'] = Role::get();
     		$data['category'] = Category::get();
 
@@ -35,7 +35,7 @@ class RequestsController extends Controller
     public function dummyPost()
     {
     	try {
-    		$requests = RequestForm::where('user_id', 1)->with('people')->paginate(15);
+    		$requests = RequestForm::where('user_id', 1)->with('lodger')->paginate(15);
     		$data['roles'] = Role::get();
     		$data['category'] = Category::get();
     	} catch (Exception $e) {

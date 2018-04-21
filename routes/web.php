@@ -29,7 +29,7 @@ Route::get('/user/dashboard', 'RequestsController@userDashboard');
 Route::post('/user/dashboard/form', 'RequestsController@createForm');
 Route::get('/user/dummy', 'RequestsController@dummyPost');
 
-Route::get('/admin/dashboard', 'AuthController@home');
-Route::get('/admin/history', 'AdminController@getHistoryAdminDashboard');
+// Route::get('/admin/dashboard', 'AuthController@home');
+Route::get('/admin/dashboard', 'AdminController@getHistoryAdminDashboard');
 
 Route::get('/user/cetaksurat', 'SuratController@cetak');
