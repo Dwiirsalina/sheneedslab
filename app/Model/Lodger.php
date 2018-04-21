@@ -12,7 +12,7 @@ class Lodger extends Model
     public $timestamp = true;
 
     public function user(){
-    	return $this->belongsTo('App\Model\User', 'user_id', 'id');
+    	return $this->belongsTo('App\Model\User', 'user_NRP', 'username');
     }
 
     public function request(){
