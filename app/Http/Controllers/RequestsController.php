@@ -13,14 +13,15 @@ class RequestsController extends Controller
     public function userDashboard(Request $req)
     {
     	try {
-    		$requests = RequestForm::where('user_id', Auth::user()->id)->with('people')->paginate(15);
+    		$requests = RequestForm::where('user_id', 1)->with('people')->paginate(15);
     	} catch (Exception $e) {
     		return json_encode([
     			'status' => 500,
     			'error' => $e
     		]);
     	}
-    	$data['requests'] = $requests;
+			$data['requests'] = $requests;
+			dd($requests);
     	return view('user.dashboard', $data);
     }
 
