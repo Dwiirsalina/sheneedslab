@@ -42,7 +42,7 @@ class User extends Authenticatable
     }
 
     public function lodgers(){
-        return $this->hasMany('App\Model\Lodger', 'user_id', 'id');
+        return $this->hasMany('App\Model\Lodger', 'user_NRP', 'username');
     }
 
     public function statuss(){
