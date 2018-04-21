@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('user.dashboard');
+    return view('admin.dashboard');
 });
 // Route::get('/', function () {
 //     return view('user.signin');

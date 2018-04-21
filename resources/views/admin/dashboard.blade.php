@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    @include('layout.head')
+@include('layout.head')
 
 <body class="landing-page" >
     <div class="page-header header-filter" data-parallax="true" 
@@ -9,7 +9,7 @@
     <div class="container text-center">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="title">She Needs Lab</h1>
+                    <h1 class="title"></h1>
                 </div>
             </div>
         </div>
@@ -18,12 +18,75 @@
         <div class="container" style="padding-top:0.5rem">
             <div class="text-center">
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
+                <h2 class="title">Request List</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <div class="team-player"> -->
+                                <div class="card card-plain">
+                                  <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">No</th>
+                                            <th class="text-center">Title</th>
+                                            <th class="text-center">Category</th>
+                                            <th class="text-center">Date</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          @foreach ($requests as $request)
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>{{ $request->title }}</td>
+                                            <td>{{ $request->category }}</td>
+                                            <td>{{ $request->date }}</td>
+                                            <td>{{ $request->status }}</td>
+                                            <td class="td-actions">
+                                                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalDetail"><i class="material-icons">person</i>
+                                                    Detail
+                                                </button>
+                                                <button type="button" rel="tooltip" class="btn btn-success">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" class="btn btn-danger">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>  
+                                <nav aria-label="...">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                        <span class="page-link">Previous</span>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a>
+                                        <span class="sr-only">(current)</span></li>
+                                        <li class="page-item">
+                                        <span class="page-link">
+                                            2
+                                        </span>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                </div>
+                                <!-- Large modal -->
 
-<button class="btn btn-round" data-toggle="modal" data-target="#signupModal">
-    <i class="material-icons">assignment</i>
-    SignUp
-</button>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
 
+<!-- modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-signup" role="document">
     <div class="modal-content">
@@ -138,71 +201,9 @@
     </div>
   </div>
 </div>
-                <h2 class="title">Request List</h2>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- <div class="team-player"> -->
-                                <div class="card card-plain">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">#</th>
-                                            <th>Name</th>
-                                            <th>Job Position</th>
-                                            <th>Since</th>
-                                            <th class="text-right">Salary</th>
-                                            <th class="text-right">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>Andrew Mike</td>
-                                            <td>Develop</td>
-                                            <td>2013</td>
-                                            <td class="text-right">&euro; 99,225</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" class="btn btn-info">
-                                                    <i class="material-icons">person</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" class="btn btn-success">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" class="btn btn-danger">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>  
-                                <nav aria-label="...">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                        <span class="page-link">Previous</span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active">
-                                        <span class="page-link">
-                                            2
-                                            <span class="sr-only">(current)</span>
-                                        </span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                </div>
-                                <!-- Large modal -->
 
-                            <!-- </div> -->
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </div>
-    @include('layout.footer')
+@include('layout.footer')
+
 <script>
     $('#signupModal').modal('static')
 </script>
