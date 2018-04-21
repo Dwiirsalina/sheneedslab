@@ -36,10 +36,8 @@ class SuratController extends Controller
     // }
 
     public function cetak(){
-        // echo "masuk anjing";
-        // dd();
         $pdf = PDF::loadView('user.surat');
-        $pdf->setPaper('A5', 'landscape');
+        $pdf->setPaper('A4', 'potrait');
         $name = "Surat izin" . ".pdf";
         return $pdf->stream($name);
     }
