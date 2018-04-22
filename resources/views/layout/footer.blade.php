@@ -1,6 +1,6 @@
 <footer class="footer ">
         <div class="container">
-            <nav class="pull-left">
+            <!-- <nav class="pull-left">
                 <ul>
                     <li>
                         <a href="https://www.creative-tim.com">
@@ -23,33 +23,16 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
             <div class="copyright pull-right">
                 &copy;
                 <script>
                     document.write(new Date().getFullYear())
                 </script>, made with <i class="material-icons">favorite</i> by
-                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                <a href="https://www.creative-tim.com" target="_blank">LP</a>
             </div>
         </div>
     </footer>
-    
-    <script type="text/javascript">
-    // javascript for init
-			    $('.datetimepicker').datetimepicker({
-			    icons: {
-			        time: "fa fa-clock-o",
-			        date: "fa fa-calendar",
-			        up: "fa fa-chevron-up",
-			        down: "fa fa-chevron-down",
-			        previous: 'fa fa-chevron-left',
-			        next: 'fa fa-chevron-right',
-			        today: 'fa fa-screenshot',
-			        clear: 'fa fa-trash',
-			        close: 'fa fa-remove'
-			    }
-			});
-    </script>
 
 
     <!--   Core JS Files   -->

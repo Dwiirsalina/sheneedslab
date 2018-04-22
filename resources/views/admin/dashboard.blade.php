@@ -3,19 +3,20 @@
 
 @include('layout.head')
 
-<body class="landing-page" >
-    <div class="page-header header-filter" data-parallax="true" 
-    style=" background-image: url('http://localhost/sheneedslab/public/img/bg2.jpeg'); ">
-    <div class="container text-center">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="title"></h1>
-                </div>
-            </div>
+<body class="landing-page" style="background-color:#ceabf1">
+    
+    <div class="page-header " data-parallax="true" style="margin-top:-1.5rem;background-image: url('http://localhost/sheneedslab/public/img/h3.jpg');background-size: 100% 100%;width: 100%;
+    height: 11rem; ">
+        <div class="container text-center">
+            
         </div>
     </div>
     <div class="main main-raised">
-        <div class="container" style="padding-top:0.5rem">
+        <div class="container" style="padding-top:1rem;">
+        <button class="btn btn-round btn-danger" style="margin-top:1rem;float:right">
+                <i class="material-icons">exit_to_app</i>
+                LogOut
+            </button>
             <div class="text-center">
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
                 <h2 class="title">Request List</h2>
@@ -36,46 +37,46 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                          @foreach ($requests as $request)
+                                          @foreach ($requests as $key => $request)
                                         <tr>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{$key+1}}</td>
                                             <td>{{ $request->title }}</td>
-                                            <td>{{ $request->category }}</td>
+                                            @if($request->category_id == 1)
+                                                    <td class="text-center">Kuliah</td>
+                                                @else
+                                                    <td class="text-center">Himpunan</td>
+                                                @endif
                                             <td>{{ $request->date }}</td>
-                                            <td>{{ $request->status }}</td>
+                                            <td class="text-center">
+                                                @if ($request->status < 0)
+                                                <p style="color:#d04e44"><b>REJECTED</b></p>
+                                                @elseif ($request->status == 10)
+                                                <p style="color:#35b546"><b>APPROVED</b></p>
+                                                @else
+                                                <p style="color:#f4a103"><b>ON PROCESS</b></p>
+                                                @endif
+                                                </td>
                                             <td class="td-actions">
-                                                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalDetail"><i class="material-icons">person</i>
+                                                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalAccept{{$key}}"><i class="material-icons">person</i>
                                                     Detail
                                                 </button>
-                                                <button type="button" rel="tooltip" class="btn btn-success">
+                                                <!-- <button type="button" rel="tooltip" class="btn btn-success">
                                                     <i class="material-icons">check</i>
                                                 </button>
                                                 <button type="button" rel="tooltip" class="btn btn-danger">
                                                     <i class="material-icons">close</i>
-                                                </button>
+                                                </button> -->
                                             </td>
                                         </tr>
+
+
                                         @endforeach
                                     </tbody>
                                 </table>  
-                                <nav aria-label="...">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                        <span class="page-link">Previous</span>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a>
-                                        <span class="sr-only">(current)</span></li>
-                                        <li class="page-item">
-                                        <span class="page-link">
-                                            2
-                                        </span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                <div class="text-center">
+                                {{ $requests->links() }}
+                                    
+                                </div>
                                 </div>
                                 <!-- Large modal -->
 
@@ -86,126 +87,95 @@
         </div>
     </div>
 
-<!-- modal -->
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-signup" role="document">
-    <div class="modal-content">
-      <div class="card card-signup card-plain">
-        <div class="modal-header">
-          <h5 class="modal-title card-title">Register</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="material-icons">clear</i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-5 ml-auto">
-              <div class="info info-horizontal">
-                <div class="icon icon-rose">
-                  <i class="material-icons">timeline</i>
-                </div>
-                <div class="description">
-                  <h4 class="info-title">Marketing</h4>
-                  <p class="description">
-                  We've created the marketing campaign of the website. It was a very interesting collaboration.
-                  </p>
-                </div>
-              </div>
-
-              <div class="info info-horizontal">
-                <div class="icon icon-primary">
-                  <i class="material-icons">code</i>
-                </div>
-                <div class="description">
-                  <h4 class="info-title">Fully Coded in HTML5</h4>
-                  <p class="description">
-                  We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
-                  </p>
-                </div>
-              </div>
-
-              <div class="info info-horizontal">
-                <div class="icon icon-info">
-                  <i class="material-icons">group</i>
-                </div>
-                <div class="description">
-                  <h4 class="info-title">Built Audience</h4>
-                  <p class="description">
-                  There is also a Fully Customizable CMS Admin Dashboard for this product.
-                  </p>
-                </div>
-              </div>
+    @foreach($requests as $key => $request)
+            <div class="modal fade" id="modalAccept{{$key}}" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
-            <div class="col-md-5 mr-auto">
-              <div class="social text-center">
-                <button class="btn btn-just-icon btn-round btn-twitter">
-                  <i class="fa fa-twitter"></i>
-                </button>
-                <button class="btn btn-just-icon btn-round btn-dribbble">
-                  <i class="fa fa-dribbble"></i>
-                </button>
-                <button class="btn btn-just-icon btn-round btn-facebook">
-                  <i class="fa fa-facebook"> </i>
-                </button>
-                <h4> or be classical </h4>
-              </div>
+                <div class="modal-body">
+                  <form action="{{url('admin/dashboard/confirm/'.$request->slug)}}" method="POST" >
+                    {{csrf_field()}}
+                  <span class="info-title" style="color:#1ab1f5">Category</span>
+                    @if($request->category_id == 1)
+                        <p>Kuliah</p>
+                    @else
+                        <p>Himpunan</p>
+                    @endif
+                <span class="info-title" style="color:#1ab1f5">Title</span>
+                    <p>{{$request->title}}</p>
+                <span class="info-title" style="color:#1ab1f5">Date</span>
+                    <p>{{$request->date}}</p>
+                <span class="info-title" style="color:#1ab1f5">Location</span>
+                    <p>Kuliah</p>
+                <span class="info-title" style="color:#1ab1f5">Description</span>
+                    <p>{{$request->description}}</p>
+                <span class="info-title" style="color:#1ab1f5">Penginap</span>
+                    <p>penginap</p><br>
+                  <div class="form">
+                    <label for="Select{{$key}}" class="info-title" style="color:#1ab1f5">Pilih Approve / Reject</label>
+                    <select onchange="checkReject({{$key}});" name="confirmation{{$request->slug}}" class="form-control" id="Select{{$key}}">
 
-              <form class="form" method="" action="">
-                <div class="card-body">
-                  <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">face</i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="First Name...">
-                    </div>
+                      <option value="1">Approve</option>
+                      <option value="-1">Reject</option>
+                    </select>
+                  </div>
+                  <br>
+                  <h6 class="info-title" id="warn{{$key}}"></h6>
+                  <div class="form">
+                    <label for="reason{{$key}}" class="info-title" style="color:#1ab1f5">Masukkan alasan penolakan</label>
+                    <input disabled type="text" class="form-control" id="reason{{$key}}" name="reason{{$request->slug}}" placeholder="Masukkan Alasan Penolakan disini">
                   </div>
 
-                <div class="form-group">
-                  <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="material-icons">email</i>
-                      </span>
-                      <input type="text" class="form-control" placeholder="Email...">
-                  </div>
                 </div>
-
-                <div class="form-group">
-                  <div class="input-group">
-                      <span class="input-group-addon">
-                          <i class="material-icons">lock_outline</i>
-                      </span>
-                      <input type="password" placeholder="Password..." class="form-control" />
-                  </div>
+                <div class="modal-footer">
+                <p class="form-submit">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input name="submit" type="submit" id="submit" onsubmit="checkReason({{$key}});" class="btn btn-primary" value="Submit"/>
                 </div>
-
-                <div class="form-check">
-                  <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" value="" checked>
-                      <span class="form-check-sign">
-                          <span class="check"></span>
-                      </span>
-                      I agree to the <a href="#something">terms and conditions</a>.
-                  </label>
-                </div>
-                </div>
-              <div class="modal-footer justify-content-center">
-              <a href="#pablo" class="btn btn-primary btn-round">Get Started</a>
-              </div>
-              </form>
+                </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+    @endforeach
+
+
+
 
 @include('layout.footer')
 
 <script>
     $('#signupModal').modal('static')
+
+    function checkReject(key)
+    {
+      status = $("#Select"+key).val();
+      console.log(status);
+      if(status == -1)
+      {
+        $("#reason"+key).prop('disabled', false);
+      }
+      else
+      {
+        $("#reason"+key).prop('disabled', true);
+      }
+    }
+    function checkReason(key)
+    {
+      status = $("#Select"+key).val();
+      reason = $("#reason"+key).val();
+      if(status == -1 && reason == "")
+      {
+        $("#warn"+key).innerHtml = "Mohon mengisi alasan penolakan";
+        return FALSE;
+      }
+      return TRUE;
+    }
 </script>
 
 </body>
