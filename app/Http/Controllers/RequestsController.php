@@ -8,6 +8,8 @@ use App\Model\Lodger;
 use App\Model\Role;
 use App\Model\Category;
 use App\Model\User;
+use GuzzleHttp\Client;
+use PDF;
 use Auth;
 use DB;
 use Uuid;
@@ -17,7 +19,7 @@ class RequestsController extends Controller
     public function userDashboard(Request $req)
     {
     	try {
-    		$requests = RequestForm::where('user_id', 1)->with('lodger')->paginate(15);
+    		$requests = RequestForm::where('user_id', Auth::user()->id)->with('lodgers')->orderBy('created_at', 'desc')->paginate(15);
     		$data['roles'] = Role::get();
     		$data['category'] = Category::get();
 
@@ -53,18 +55,25 @@ class RequestsController extends Controller
     {
     	try {
      		DB::beginTransaction();
-            $user_id = Auth::user()->id;
+						$user_id = Auth::user()->id;
+						$id=Uuid::generate();
     		$new_form = new RequestForm();
-            $new_form->id = Uuid::generate();
+            $new_form->id = $id;
     		$new_form->user_id = $user_id;
-    		$new_form->date = $req['date'];
+    		$new_form->date = date("Y-m-d");
+            $new_form->location = $req['location'];
             $new_form->status = 0;
     		$new_form->category_id = $req['category'];
     		$new_form->title = $req['title'];
     		$new_form->description = $req['description'];
     		$new_form->save();
-            $form_id = $new_form->id;
-    		$insert_lodger = $this->insertLodger($req['lodger'], $form_id);
+            $new_form->slug = substr(bcrypt(Auth::user()->id), 0, 100).substr(bcrypt($new_form->created_at), 0, 10);
+            $new_form->save();
+            // $form_id = $new_form->id;
+    		// $insert_lodger = $this->insertLodger($req['nrp'], $form_id);
+						$form_id = $new_form->id;
+						// dd($id);
+    		$insert_lodger = $this->insertLodger($req['nrp'], $id);
     		if(!$insert_lodger)
     		{
     			DB::rollback();
@@ -75,21 +84,17 @@ class RequestsController extends Controller
 			return redirect('user/dashboard')->with('status', -1);
     	}
 		DB::commit();
-		$users = User::where('role_id','=',2)->get();
-		dd($users);
+		$users = User::where('role_id','=',2)->whereNotNull('line_token')->get();
 		foreach ($users as $key => $user) {
 			try{
 				$client = new Client();
-				$response = $client->request('POST', 'https://notify-api.line.me/api/notify', 
-				[
+				$response = $client->request('POST', 'https://notify-api.line.me/api/notify',
+				[	
 					'headers' => [
-						'Content-Type' => 'application/x-www-form-urlencoded',
-						'Authorization'     => 'Bearer '.$user->line_token,
-					]
-				],
-				[
+						'Authorization' => 'Bearer '.$user->line_token,
+					],
 					'form_params' => [
-						'message' => 'Halo admin ada yang mau menginap nih tolong diperiksa ya. '.url('/'),
+						'message' => 'Halo admin '.$user->username.' ada yang mau menginap nih tolong diperiksa ya. '.url('/'),
 					]
 				]);
 			} catch (GuzzleHttp\Exception\ClientException $e) {
@@ -105,7 +110,7 @@ class RequestsController extends Controller
     public function getRequestAdminDashboard(Request $req)
     {
         try {
-          $requests = RequestForm::where('status',1)->orderBy('created_at')->paginate(15);
+          $requests = RequestForm::where('status',1)->orderBy('created_at')->paginate(3);
         } catch (Exception $e) {
           return json_encode([
       			'status' => 500,
@@ -130,6 +135,7 @@ class RequestsController extends Controller
     }
     private function insertLodger($lodger, $form_id)
     {
+			// dd($lodger);
     	try {
     		foreach($lodger as $user)
     		{
@@ -142,5 +148,27 @@ class RequestsController extends Controller
     		return FALSE;
     	}
     	return TRUE;
+    }
+
+    public function userCetak($id){
+        $request = RequestForm::where([['id', '=', $id], ['status', '=', '10']])->first();
+        if($request != null){
+            $data['lodgers'] = Lodger::where('request_id', $id)->with('user')->get();
+            
+            if(count($data['lodgers']) > 0){
+                $pdf = PDF::loadView('user.surat', $data);
+                $pdf->setPaper('A4', 'potrait');
+                $name = "Surat izin" . ".pdf";
+                return $pdf->stream($name);
+            }
+            else {
+                $data['lodgers'] = null;
+                echo "error";
+                return redirect('/home');
+            }       
+        }
+        else{
+            return 404;
+        }
     }
 }

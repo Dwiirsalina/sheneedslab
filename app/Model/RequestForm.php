@@ -8,7 +8,7 @@ class RequestForm extends Model
 {
     protected $table = 'request';
     protected $primaryKey = 'id';
-    public $incrementing = true;
+    public $incrementing = false;
     public $timestamp = true;
 
     public function category(){

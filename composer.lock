@@ -16,7 +16,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/barryvdh/laravel-dompdf/7dcdecfa125c174d0abe723603633dc2756ea3af.zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/7dcdecfa125c174d0abe723603633dc2756ea3af",
                 "reference": "7dcdecfa125c174d0abe723603633dc2756ea3af",
                 "shasum": ""
             },
@@ -226,7 +226,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/dompdf/dompdf/0f418c6b58fdeafc2a0e80eb1fa5e644e185089c.zip",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/0f418c6b58fdeafc2a0e80eb1fa5e644e185089c",
                 "reference": "0f418c6b58fdeafc2a0e80eb1fa5e644e185089c",
                 "shasum": ""
             },
@@ -1266,7 +1266,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/PhenX/php-font-lib/760148820110a1ae0936e5cc35851e25a938bc97.zip",
+                "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/760148820110a1ae0936e5cc35851e25a938bc97",
                 "reference": "760148820110a1ae0936e5cc35851e25a938bc97",
                 "shasum": ""
             },
@@ -1303,7 +1303,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/PhenX/php-svg-lib/de291bec8449b89acfe85691b5c71434797959dc.zip",
+                "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/de291bec8449b89acfe85691b5c71434797959dc",
                 "reference": "de291bec8449b89acfe85691b5c71434797959dc",
                 "shasum": ""
             },
@@ -1686,7 +1686,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sabberworm/PHP-CSS-Parser/9ea4b00c569b19f731d0c2e0e802055877ff40c2.zip",
+                "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/9ea4b00c569b19f731d0c2e0e802055877ff40c2",
                 "reference": "9ea4b00c569b19f731d0c2e0e802055877ff40c2",
                 "shasum": ""
             },
@@ -2693,7 +2693,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/webpatser/laravel-uuid/9c9bd4344f4aa78326b34a324d8a208e65c8221f.zip",
+                "url": "https://api.github.com/repos/webpatser/laravel-uuid/zipball/9c9bd4344f4aa78326b34a324d8a208e65c8221f",
                 "reference": "9c9bd4344f4aa78326b34a324d8a208e65c8221f",
                 "shasum": ""
             },

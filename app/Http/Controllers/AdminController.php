@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Model\RequestForm;
 use Input;
 use App\Model\User;
-use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
+use App\Model\Status;
+use Auth;
 
 class AdminController extends Controller
 {
-    public function getHistoryAdminDashboard(Request $req)
+    public function getAdminHistory(Request $req)
     {
       try {
         $requests = RequestForm::paginate(15);
@@ -26,7 +27,8 @@ class AdminController extends Controller
       return view('admin.dashboard',$data);
     }
 
-    public function connected(){
+    public function connected()
+    {
       $code = Input::get('code', false);
       $state = Input::get('state', false);
       // dd($code,$state);
@@ -53,5 +55,48 @@ class AdminController extends Controller
             ]);
       }
       return view('admin.connected');
+    }
+
+    public function confirm(Request $req, $slug)
+    {
+      if(!Auth::user()->id)
+        return redirect('login');
+      try {
+        $request_form = RequestForm::where('slug', $slug)->first();
+
+        $new_status = new Status();
+        $new_status->user_id = Auth::user()->id;
+        $new_status->request_id = $request_form->id;
+        
+        if($req['confirmation'.$slug] == -1)
+        {
+          $new_status->reason = $req['reason'.$slug];
+          $request_form->status = $request_form->status - 1;
+        }
+        else
+        {
+          $request_form->status = $request_form->status + 1; 
+        }
+        $new_status->save();
+        $request_form->save();
+        return redirect('admin/dashboard')->with('status', 1);
+      } catch (Exception $e) {
+        return redirect('admin/dashboard')->with('status', -1); 
+      }
+    }
+
+    public function adminHistory(Request $req)
+    {
+      try {
+        $requests = RequestForm::paginate(15);
+      } catch (Exception $e) {
+        return json_encode([
+          'status' => 500,
+          'error' => $e
+        ]);
+      }
+       $data['requests'] = $requests;
+       // dd($requests);
+      return view('admin.history',$data);
     }
 }

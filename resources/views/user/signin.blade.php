@@ -2,7 +2,7 @@
 @include('layout.head')
 
 <body class="signup-page ">
-    <nav class="navbar  navbar-transparent    navbar-absolute  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
+    <nav class="navbar    navbar-absolute  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
         <div class="container">
             <div class="navbar-translate">
                 <!-- <a class="navbar-brand" href="../index.html"> </a> -->She Needs Lab
