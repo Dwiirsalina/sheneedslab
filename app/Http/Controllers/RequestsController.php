@@ -16,11 +16,7 @@ class RequestsController extends Controller
     public function userDashboard(Request $req)
     {
     	try {
-<<<<<<< Updated upstream
     		$requests = RequestForm::where('user_id', 1)->with('lodger')->paginate(15);
-=======
-    		$requests = RequestForm::where('user_id', Auth::user()->id)->with('lodgers')->paginate(15);
->>>>>>> Stashed changes
     		$data['roles'] = Role::get();
     		$data['category'] = Category::get();
 
