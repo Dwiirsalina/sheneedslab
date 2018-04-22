@@ -50,10 +50,8 @@
                                             <td class="text-center">
                                                 @if ($request->status < 0)
                                                 <p style="color:#d04e44"><b>REJECTED</b></p>
-                                                @elseif ($request->status == 10)
-                                                <p style="color:#35b546"><b>APPROVED</b></p>
                                                 @else
-                                                <p style="color:#f4a103"><b>ON PROCESS</b></p>
+                                                <p style="color:#35b546"><b>APPROVED</b></p>
                                                 @endif
                                                 </td>
                                             
