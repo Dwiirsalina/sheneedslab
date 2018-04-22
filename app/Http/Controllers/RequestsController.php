@@ -8,6 +8,8 @@ use App\Model\Lodger;
 use App\Model\Role;
 use App\Model\Category;
 use App\Model\Status;
+use App\Model\User;
+use GuzzleHttp\Client;
 use PDF;
 use Auth;
 use DB;
@@ -82,7 +84,27 @@ class RequestsController extends Controller
     		DB::rollback();
 			return redirect('user/dashboard')->with('status', -1);
     	}
-        DB::commit();
+		DB::commit();
+		$users = User::where('role_id','=',2)->whereNotNull('line_token')->get();
+		foreach ($users as $key => $user) {
+			try{
+				$client = new Client();
+				$response = $client->request('POST', 'https://notify-api.line.me/api/notify',
+				[	
+					'headers' => [
+						'Authorization' => 'Bearer '.$user->line_token,
+					],
+					'form_params' => [
+						'message' => 'Halo admin '.$user->username.' ada yang mau menginap nih tolong diperiksa ya. '.url('/'),
+					]
+				]);
+			} catch (GuzzleHttp\Exception\ClientException $e) {
+					return json_encode([
+						'status' => 500,
+						'error' => $e
+					]);
+			}
+		}
 		return redirect('user/dashboard')->with('status', 1);
     }
 

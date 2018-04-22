@@ -5,14 +5,39 @@
 
 <body class="landing-page" style="background-color:#ceabf1">
     
-    <div class="page-header " data-parallax="true" style="margin-top:-1.5rem;background-image: url('http://localhost/sheneedslab/public/img/h3.jpg');background-size: 100% 100%;width: 100%;
-    height: 12rem; ">
+    <div class="page-header " data-parallax="true" style="margin-top:-1.5rem;background-image: url('{{url("img/h3.jpg")}}');background-size: 100% 100%;width: 100%;
+    height: 11rem; ">
         <div class="container text-center">
             
         </div>
     </div>
     <div class="main main-raised">
         <div class="container">
+             <div style="font-size:30px">Status:<br>
+            @if($line_status)
+            line: sudah tersambung
+            <button class="btn btn-danger btn-round" target="_blank" 
+                                    onclick="window.open('https://notify-bot.line.me/oauth/authorize?client_id=8wlegGyCdDpQvGZUUf9SPC&redirect_uri={{url("admin/connected")}}&response_type=code&scope=notify&state={{ csrf_token() }}', 
+                                    'newwindow', 
+                                    'width=800,height=600'); 
+                                    return false;">Ganti ID LINE</button>
+            @else
+            line: belum tersambung
+            <button class="btn btn-success btn-round" target="_blank" 
+                                    onclick="window.open('https://notify-bot.line.me/oauth/authorize?client_id=8wlegGyCdDpQvGZUUf9SPC&redirect_uri={{url("admin/connected")}}&response_type=code&scope=notify&state={{ csrf_token() }}', 
+                                    'newwindow', 
+                                    'width=800,height=600'); 
+                                    return false;">Sambungkan LINE</button>
+            @endif
+            <br>
+            @if($email_status)
+            e-mail: sudah tersambung
+            <button class="btn btn-success btn-round" target="_blank" onclick="">Ganti e-mail</button>
+            @else
+            e-mail: belum tersambung
+            <button class="btn btn-success btn-round" target="_blank" onclick="">Sambungkan e-mail</button>
+            @endif
+            </div>
             <a href="{{ url('admin/history') }}">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate"><i class="material-icons">assignment</i> History Request
                 </button>
