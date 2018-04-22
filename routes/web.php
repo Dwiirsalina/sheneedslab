@@ -30,6 +30,7 @@ Route::post('/user/dashboard/form', 'RequestsController@createForm');
 Route::get('/user/dummy', 'RequestsController@dummyPost');
 
 // Route::get('/admin/dashboard', 'AuthController@home');
-Route::get('/admin/dashboard', 'AdminController@getHistoryAdminDashboard');
+Route::get('/admin/dashboard', 'AdminController@getAdminHistory');
 Route::post('/admin/dashboard/confirm/{slug}', 'AdminController@confirm');
 Route::get('/user/cetaksurat/{id}', 'SuratController@cetak');
+Route::get('/admin/history', 'AdminController@adminHistory');

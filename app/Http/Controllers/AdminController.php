@@ -8,7 +8,7 @@ use App\Model\Status;
 use Auth;
 class AdminController extends Controller
 {
-    public function getHistoryAdminDashboard(Request $req)
+    public function getAdminHistory(Request $req)
     {
       try {
         $requests = RequestForm::paginate(15);
@@ -49,6 +49,20 @@ class AdminController extends Controller
       } catch (Exception $e) {
         return redirect('admin/dashboard')->with('status', -1); 
       }
+    }
 
+    public function adminHistory(Request $req)
+    {
+      try {
+        $requests = RequestForm::paginate(15);
+      } catch (Exception $e) {
+        return json_encode([
+          'status' => 500,
+          'error' => $e
+        ]);
+      }
+       $data['requests'] = $requests;
+       // dd($requests);
+      return view('admin.history',$data);
     }
 }

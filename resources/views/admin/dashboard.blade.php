@@ -93,7 +93,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Request</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Request</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -102,38 +102,34 @@
                 <div class="modal-body">
                   <form action="{{url('admin/dashboard/confirm/'.$request->slug)}}" method="POST" >
                     {{csrf_field()}}
-                  <div class="description">
-                    <h4 class="info-title">Judul</h4>
-                    <p class="description">
-                      {{$request->title}}
-                    </p>
-                  </div>
-
-                  <div class="description">
-                    <h4 class="info-title">Tempat Menginap</h4>
-                    <p class="description">
-                      {{$request->location}}
-                    </p>
-                  </div>
-
-                  <div class="description">
-                    <h4 class="info-title">Deskripsi</h4>
-                    <p class="description">
-                      {{$request->description}}
-                    </p>
-                  </div>
-                  <div class="form-group">
-                    <label for="Select{{$key}}">Pilih Approve / Reject</label>
+                  <span class="info-title" style="color:#1ab1f5">Category</span>
+                    @if($request->category_id == 1)
+                        <p>Kuliah</p>
+                    @else
+                        <p>Himpunan</p>
+                    @endif
+                <span class="info-title" style="color:#1ab1f5">Title</span>
+                    <p>{{$request->title}}</p>
+                <span class="info-title" style="color:#1ab1f5">Date</span>
+                    <p>{{$request->date}}</p>
+                <span class="info-title" style="color:#1ab1f5">Location</span>
+                    <p>Kuliah</p>
+                <span class="info-title" style="color:#1ab1f5">Description</span>
+                    <p>{{$request->description}}</p>
+                <span class="info-title" style="color:#1ab1f5">Penginap</span>
+                    <p>penginap</p><br>
+                  <div class="form">
+                    <label for="Select{{$key}}" class="info-title" style="color:#1ab1f5">Pilih Approve / Reject</label>
                     <select onchange="checkReject({{$key}});" name="confirmation{{$request->slug}}" class="form-control" id="Select{{$key}}">
 
                       <option value="1">Approve</option>
                       <option value="-1">Reject</option>
                     </select>
                   </div>
-
+                  <br>
                   <h6 class="info-title" id="warn{{$key}}"></h6>
-                  <div class="form-group">
-                    <label for="reason{{$key}}">Masukkan alasan penolakan</label>
+                  <div class="form">
+                    <label for="reason{{$key}}" class="info-title" style="color:#1ab1f5">Masukkan alasan penolakan</label>
                     <input disabled type="text" class="form-control" id="reason{{$key}}" name="reason{{$request->slug}}" placeholder="Masukkan Alasan Penolakan disini">
                   </div>
 
