@@ -33,9 +33,5 @@ Route::get('/user/cetaksurat/{id}', 'RequestsController@userCetak');
 // Route::get('/admin/dashboard', 'AuthController@home');
 Route::get('/admin/dashboard', 'AdminController@getAdminHistory');
 Route::post('/admin/dashboard/confirm/{slug}', 'AdminController@confirm');
-<<<<<<< HEAD
 Route::get('/user/cetaksurat/{id}', 'SuratController@cetak');
 Route::get('/admin/history', 'AdminController@adminHistory');
-=======
-// Route::get('/user/cetaksurat/{id}', 'SuratController@cetak');
->>>>>>> 09e66a453cd20512b50e216f0248028510e15f95
