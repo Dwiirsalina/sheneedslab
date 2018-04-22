@@ -89,5 +89,6 @@ class AuthController extends Controller
     {
         $user = Auth::User();
         Auth::logout();
+        return redirect('/login')->with('error','Logout berhasil');
     }
 }
