@@ -28,8 +28,9 @@ Route::get('/home', 'AuthController@home');
 Route::get('/user/dashboard', 'RequestsController@userDashboard');
 Route::post('/user/dashboard/form', 'RequestsController@createForm');
 Route::get('/user/dummy', 'RequestsController@dummyPost');
+Route::get('/user/cetaksurat/{id}', 'RequestsController@userCetak');
 
 // Route::get('/admin/dashboard', 'AuthController@home');
 Route::get('/admin/dashboard', 'AdminController@getHistoryAdminDashboard');
 Route::post('/admin/dashboard/confirm/{slug}', 'AdminController@confirm');
-Route::get('/user/cetaksurat/{id}', 'SuratController@cetak');
+// Route::get('/user/cetaksurat/{id}', 'SuratController@cetak');
