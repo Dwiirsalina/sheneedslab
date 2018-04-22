@@ -13,7 +13,7 @@
     </div>
     <div class="main main-raised">
         <div class="container">
-            <a href="{{ url('/logout') }}">
+            <a href="{{ url('admin/history') }}">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate"><i class="material-icons">assignment</i> History Request
                 </button>
             </a>
@@ -48,11 +48,11 @@
                                             <td class="text-center">{{$key+1}}</td>
                                             <td>{{ $request->title }}</td>
                                             @if($request->category_id == 1)
-                                                    <td class="text-center">Kuliah</td>
-                                                @else
-                                                    <td class="text-center">Himpunan</td>
-                                                @endif
-                                            <td>{{ $request->date }}</td>
+                                                <td class="text-center">Kuliah</td>
+                                            @else
+                                                <td class="text-center">Himpunan</td>
+                                            @endif
+                                            <td class="text-center">{{ $request->date }}</td>
                                             <td class="text-center">
                                                 @if ($request->status < 0)
                                                 <p style="color:#d04e44"><b>REJECTED</b></p>
@@ -62,7 +62,7 @@
                                                 <p style="color:#f4a103"><b>ON PROCESS</b></p>
                                                 @endif
                                                 </td>
-                                            <td class="td-actions">
+                                            <td class="td-actions text-center">
                                                 <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalAccept{{$key}}"><i class="material-icons">person</i>
                                                     Detail
                                                 </button>
