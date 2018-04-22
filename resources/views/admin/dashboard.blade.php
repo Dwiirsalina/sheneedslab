@@ -12,7 +12,11 @@
         </div>
     </div>
     <div class="main main-raised">
-        <div class="container" style="padding-top:0.5rem">
+        <div class="container" style="padding-top:1rem;">
+        <button class="btn btn-round btn-danger" style="margin-top:1rem;float:right">
+                <i class="material-icons">exit_to_app</i>
+                LogOut
+            </button>
             <div class="text-center">
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
                 <h2 class="title">Request List</h2>
