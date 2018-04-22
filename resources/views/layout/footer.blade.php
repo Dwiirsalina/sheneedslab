@@ -24,11 +24,7 @@
                 <script>
                     document.write(new Date().getFullYear())
                 </script>, made with <i class="material-icons">favorite</i> by
-<<<<<<< HEAD
                 <a href="https://www.creative-tim.com" target="_blank">Admin LP</a> for a better web.
-=======
-                <a href="https://www.creative-tim.com" target="_blank">LP</a>
->>>>>>> development
             </div>
         </div>
     </footer>
