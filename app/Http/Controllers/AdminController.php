@@ -23,7 +23,9 @@ class AdminController extends Controller
         ]);
       }
        $data['requests'] = $requests;
-       // dd($requests);
+       $data['line_status'] = Auth::user()->line_token ? True : False;
+       $data['email_status'] = Auth::user()->email ? True : False;
+      //  dd($data);
       return view('admin.dashboard',$data);
     }
 

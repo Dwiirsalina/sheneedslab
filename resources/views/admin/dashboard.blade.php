@@ -13,17 +13,37 @@
     </div>
     <div class="main main-raised">
         <div class="container" style="padding-top:1rem;">
-        <button class="btn btn-round btn-danger" style="margin-top:1rem;float:right">
+            <button class="btn btn-round btn-danger" style="margin-top:1rem;float:right">
                 <i class="material-icons">exit_to_app</i>
                 LogOut
             </button>
-            <div class="text-center">
-            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
-            <a class="btn btn-success btn-round" href="#" target="_blank" 
+            <div style="font-size:30px">Status:<br>
+            @if($line_status)
+            line: sudah tersambung
+            <button class="btn btn-danger btn-round" target="_blank" 
                                     onclick="window.open('https://notify-bot.line.me/oauth/authorize?client_id=8wlegGyCdDpQvGZUUf9SPC&redirect_uri={{url("admin/connected")}}&response_type=code&scope=notify&state={{ csrf_token() }}', 
                                     'newwindow', 
                                     'width=800,height=600'); 
-                                    return false;">Connect to LINE</a>    
+                                    return false;">Ganti ID LINE</button>
+            @else
+            line: belum tersambung
+            <button class="btn btn-success btn-round" target="_blank" 
+                                    onclick="window.open('https://notify-bot.line.me/oauth/authorize?client_id=8wlegGyCdDpQvGZUUf9SPC&redirect_uri={{url("admin/connected")}}&response_type=code&scope=notify&state={{ csrf_token() }}', 
+                                    'newwindow', 
+                                    'width=800,height=600'); 
+                                    return false;">Sambungkan LINE</button>
+            @endif
+            <br>
+            @if($email_status)
+            e-mail: sudah tersambung
+            <button class="btn btn-success btn-round" target="_blank" onclick="">Ganti e-mail</button>
+            @else
+            e-mail: belum tersambung
+            <button class="btn btn-success btn-round" target="_blank" onclick="">Sambungkan e-mail</button>
+            @endif
+            </div>
+            <div class="text-center">
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->   
             <h2 class="title">Request List</h2>
                     <div class="row">
                         <div class="col-md-12">
