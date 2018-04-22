@@ -87,7 +87,7 @@ class RequestsController extends Controller
     public function getRequestAdminDashboard(Request $req)
     {
         try {
-          $requests = RequestForm::where('status',1)->orderBy('created_at')->paginate(15);
+          $requests = RequestForm::where('status',1)->orderBy('created_at')->paginate(3);
         } catch (Exception $e) {
           return json_encode([
       			'status' => 500,

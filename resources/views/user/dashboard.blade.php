@@ -14,7 +14,7 @@
 
     <div class="main main-raised">
         <div class="container">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create Request<i class="material-icons">assignment</i>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate"><i class="material-icons">assignment</i> Create Request
             </button>
            
             <!-- <div class="text-center"> -->
@@ -54,7 +54,7 @@
                                                 <td class="text-center">
                                                 @if ($request->status < 0)
                                                 <p style="color:#d04e44"><b>REJECTED</b></p>
-                                                @elseif ($request->status > 0)
+                                                @elseif ($request->status == 10)
                                                 <p style="color:#35b546"><b>APPROVED</b></p>
                                                 @else
                                                 <p style="color:#f4a103"><b>ON PROCESS</b></p>

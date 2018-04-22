@@ -3,15 +3,12 @@
 
 @include('layout.head')
 
-<body class="landing-page" >
-    <div class="page-header header-filter" data-parallax="true" 
-    style=" background-image: url('http://localhost/sheneedslab/public/img/bg2.jpeg'); ">
-    <div class="container text-center">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="title"></h1>
-                </div>
-            </div>
+<body class="landing-page" style="background-color:#ceabf1">
+    
+    <div class="page-header " data-parallax="true" style="margin-top:-1.5rem;background-image: url('http://localhost/sheneedslab/public/img/h3.jpg');background-size: 100% 100%;width: 100%;
+    height: 11rem; ">
+        <div class="container text-center">
+            
         </div>
     </div>
     <div class="main main-raised">
@@ -40,9 +37,21 @@
                                         <tr>
                                             <td class="text-center">{{$key+1}}</td>
                                             <td>{{ $request->title }}</td>
-                                            <td>{{ $request->category }}</td>
+                                            @if($request->category_id == 1)
+                                                    <td class="text-center">Kuliah</td>
+                                                @else
+                                                    <td class="text-center">Himpunan</td>
+                                                @endif
                                             <td>{{ $request->date }}</td>
-                                            <td>{{ $request->status }}</td>
+                                            <td class="text-center">
+                                                @if ($request->status < 0)
+                                                <p style="color:#d04e44"><b>REJECTED</b></p>
+                                                @elseif ($request->status == 10)
+                                                <p style="color:#35b546"><b>APPROVED</b></p>
+                                                @else
+                                                <p style="color:#f4a103"><b>ON PROCESS</b></p>
+                                                @endif
+                                                </td>
                                             <td class="td-actions">
                                                 <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalAccept{{$key}}"><i class="material-icons">person</i>
                                                     Detail
@@ -60,24 +69,10 @@
                                         @endforeach
                                     </tbody>
                                 </table>  
-                                <nav aria-label="...">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                        <span class="page-link">Previous</span>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a>
-                                        <span class="sr-only">(current)</span></li>
-                                        <li class="page-item">
-                                        <span class="page-link">
-                                            2
-                                        </span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                <div class="text-center">
+                                {{ $requests->links() }}
+                                    
+                                </div>
                                 </div>
                                 <!-- Large modal -->
 
