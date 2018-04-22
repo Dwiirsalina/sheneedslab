@@ -6,10 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class RequestForm extends Model
 {
-    protected $table = 'requests';
+    protected $table = 'request';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    public $timestamp = true;
 
-    public function people()
-    {
-    	return $this->hasMany('App\Model\Lodger', 'form_id', 'id');
+    public function category(){
+    	return $this->hasOne('App\Model\Category', 'id', 'id');
     }
+
+    public function lodgers(){
+    	return $this->hasMany('App\Model\Lodger', 'request_id', 'id');
+    }
+
+    public function statuss(){
+    	return $this->hasMany('App\Model\Status', 'request_id', 'id');
+    }
+
 }

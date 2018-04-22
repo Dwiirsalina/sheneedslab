@@ -20,10 +20,15 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
+            $isDuplicate = $this->checkUsername($request->username);
+            if ($isDuplicate) {
+                return redirect('/register')->with('error','NRP sudah pernah terdaftar !');
+            }
+
             $user = new User();
             $user->username = $request->username;
             $user->password = bcrypt($request->password);
-            $user->role = 3;
+            $user->role_id = 3;
             $user->name = $request->name;
             $user->no_hp = $request->no_hp;
             $user->email = $request->email;
@@ -37,7 +42,18 @@ class AuthController extends Controller
             ]);
         }
 
-        return view('login');
+        return redirect('/login');
+    }
+
+    protected function checkUsername($username)
+    {
+        $user = User::where('username',$username)->get();
+        if ($user==null) {
+            return TRUE;
+        }
+        else {
+           return FALSE;
+        }
     }
 
     public function login(Request $request)
@@ -46,21 +62,22 @@ class AuthController extends Controller
         'password' => $request->input('password')])){
             return redirect('/home');
         }
-        return redirect('/')->with('error','Username atau password salah');
+        return redirect('/login')->with('error','Username atau password salah');
     }
 
     public function home()
     {
         $data['user'] = Auth::user();
-        switch(Auth::user()->level){
-            case 'admin':
-                return view('admin.index', $data);
+        // dd(Auth::user());
+        switch(Auth::user()->role_id){
+            case 2:
+                return redirect('/admin/dashboard');
                 break;
-            case 'kajur':
-                return view('pages.guru.index', $data);
-                break;
-            case 'user':
-                return view('pages.proktor.index', $data);
+            // case 'kajur':
+            //     return view('pages.guru.index', $data);
+            //     break;
+            case 3:
+                return redirect('/user/dashboard');
                 break;
             default:
                 Auth::logout();
@@ -72,5 +89,6 @@ class AuthController extends Controller
     {
         $user = Auth::User();
         Auth::logout();
+        return redirect('/login')->with('error','Logout berhasil');
     }
 }

@@ -3548,7 +3548,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   background: #FFFFFF;
   position: relative;
   z-index: 3;
-  height: -webkit-fill-available;
+  padding-bottom:1.5rem;
 }
 
 .main-raised {
