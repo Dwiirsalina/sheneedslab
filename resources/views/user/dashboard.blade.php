@@ -16,6 +16,10 @@
         <div class="container">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate"><i class="material-icons">assignment</i> Create Request
             </button>
+            <button class="btn btn-round btn-danger" style="float:right">
+                <i class="material-icons">exit_to_app</i>
+                LogOut
+            </button>
            
             <!-- <div class="text-center"> -->
             
