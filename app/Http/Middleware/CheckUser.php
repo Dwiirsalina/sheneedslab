@@ -16,8 +16,9 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role == 3){
+        if(Auth::user()->role_id == 3){
             return $next($request);
+            // dd("ahaha");
         }
         return redirect('/login');
     }
