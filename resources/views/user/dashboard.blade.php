@@ -68,7 +68,7 @@
                                                 </td>
                                                     
                                                 <td class="td-actions text-right"">
-                                                    <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#{{$request->id}}">
+                                                    <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" onclick="prepareModal('{{$request->id}}');" >
                                                         Detail
                                                     </button>
                                                     @if($request->status == 10)
@@ -187,45 +187,23 @@
                     <p>LP</p>
                 <span class="info-title" style="color:#1ab1f5">Description</span>
                     <p>{{$request->description}}</p>
+
                 <span class="info-title" style="color:#1ab1f5">Penginap</span>
-                    <p>penginap</p>
-                <div class="row">
-                    <div class="col-md-2"><span class="info-title">LP</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
+                    <div id="lodgerDiv{{$request->id}}">
+                        
                     </div>
-                    <div class="col-md-2"><span class="info-title">LP2</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
-                    </div>
-                    <div class="col-md-2"><span class="info-title">IGS</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
-                    </div>
-                    <div class="col-md-2"><span class="info-title">AJK</span>
-                        <p style="color:">&#10006;</p>
-                    </div>
-                    <div class="col-md-2"><span class="info-title">RPL</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
-                    </div>
+
+                <div class="row" id="1checkDiv{{$request->id}}">
+                    
                   
                 </div>   
-                <div class="row">
-                <div class="col-md-2"><span class="info-title">KCV</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
-                    </div>
-                    <div class="col-md-2"><span class="info-title">NCC</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
-                    </div>
-                    <div class="col-md-2"><span class="info-title">MIS</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
-                    </div>
-                    <div class="col-md-2"><span class="info-title">ALPRO</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
-                    </div>
-                    <div class="col-md-2"><span class="info-title">MI</span>
-                        <p style="color:#1ab1f5">&#10004;</p>
-                    </div>
+     
+                <div class="row" id="2checkDiv{{$request->id}}">
+                
                 </div>
-                <span class="info-title" style="color:#1ab1f5">alasan AJK</span>
-                    <p>deskripsi ga meyakinkan</p>
+                <div id="infoDiv{{$request->id}}">
+                    
+                </div>
             </div>
            
 
@@ -259,7 +237,58 @@
                 $("#lodgerNum").val(count);
             }
         }
-       
+        
+        function prepareModal($id) {
+            $.ajax({
+              url: "{{url('user/dashboard/check')}}?user="+$id,
+              context: document.body
+            }).done(function(response) {
+                console.log(response);
+                var itemCount = 0;
+
+                var reason_list = JSON.parse(response);
+                // console.log(reason_list.lodger);
+                $("#1checkDiv"+$id).empty();
+                $("#2checkDiv"+$id).empty();
+                $("#infoDiv"+$id).empty();
+                if(reason_list.response.length == 0){
+                    $("#infoDiv"+$id).append(`Maaf, Permintaan Kamu masih Belum Diproses`);
+                }
+                var status;
+                reason_list.response.forEach(function (row){
+                    if(row.status == -1)
+                    {
+                        status = '&#10006;';
+                        $("#infoDiv"+$id).append(`<span class="info-title" style="color:#1ab1f5">alasan `+row.user.username+`</span>
+                    <p>`+row.reason+`</p>`);
+                    }    
+                    else
+                        status = '&#10004;';
+                    if(itemCount < 5){
+                        $("#1checkDiv"+$id).append(`<div class="col-md-2"><span class="info-title">`+row.user.username+`</span>
+                        <p style="color:#1ab1f5">`+status+`</p>
+                    </div>`);
+                    }
+                    else{
+                        $("#2checkDiv"+$id).append(`<div class="col-md-2"><span class="info-title">`+row.user.username+`</span>
+                        <p style="color:#1ab1f5">`+status+`</p>
+                    </div>`);   
+                    }
+
+                    itemCount++;
+                });
+                var lodgerCount = 1;
+                $("#lodgerDiv"+$id).empty();
+                reason_list.lodger.forEach(function(row){
+                    // console.log(row.user);
+                    if(row.user != null)
+                        $("#lodgerDiv"+$id).append(`<p>`+lodgerCount+`. `+row.user.name+`</p>`);
+                    lodgerCount++;
+                })
+                $("#"+$id).modal('show');
+              $( this ).addClass( "done" );
+            });            
+        }       
     </script>
 </body>
 

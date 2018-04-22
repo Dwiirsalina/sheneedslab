@@ -7,6 +7,7 @@ use App\Model\RequestForm;
 use App\Model\Lodger;
 use App\Model\Role;
 use App\Model\Category;
+use App\Model\Status;
 use PDF;
 use Auth;
 use DB;
@@ -147,6 +148,24 @@ class RequestsController extends Controller
         }
         else{
             return 404;
+        }
+    }
+
+    public function dashboardCheck(Request $req){
+        // dd($req->id);
+        try {
+            $response = Status::where('request_id', $req->user)->with('user')->get();
+            $lodger = Lodger::where('request_id', $req->user)->with('user')->get();
+            return json_encode([
+                'status' => 1,
+                'response' => $response,
+                'lodger' => $lodger
+            ]);
+        } catch (Exception $e) {
+            return json_encode([
+                'status' => 500,
+                'response' => $e
+            ]);
         }
     }
 }
