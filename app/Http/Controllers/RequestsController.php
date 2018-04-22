@@ -17,7 +17,7 @@ class RequestsController extends Controller
     public function userDashboard(Request $req)
     {
     	try {
-    		$requests = RequestForm::where('user_id', Auth::user()->id)->with('lodgers')->paginate(15);
+    		$requests = RequestForm::where('user_id', Auth::user()->id)->with('lodgers')->paginate(3);
     		$data['roles'] = Role::get();
     		$data['category'] = Category::get();
 
@@ -66,8 +66,8 @@ class RequestsController extends Controller
     		$new_form->save();
             $new_form->slug = substr(bcrypt(Auth::user()->id), 0, 100).substr(bcrypt($new_form->created_at), 0, 10);
             $new_form->save();
-            $form_id = $new_form->id;
-    		$insert_lodger = $this->insertLodger($req['lodger'], $form_id);
+            // $form_id = $new_form->id;
+    		// $insert_lodger = $this->insertLodger($req['nrp'], $form_id);
 						$form_id = $new_form->id;
 						// dd($id);
     		$insert_lodger = $this->insertLodger($req['nrp'], $id);
@@ -112,6 +112,7 @@ class RequestsController extends Controller
     }
     private function insertLodger($lodger, $form_id)
     {
+			// dd($lodger);
     	try {
     		foreach($lodger as $user)
     		{

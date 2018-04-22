@@ -3,26 +3,24 @@
 
     @include('layout.head')
 
-<body class="landing-page" >
+<body class="landing-page" style="background-color:#ceabf1">
     
-    <div class="page-header " data-parallax="true" style="margin-top:-10px; ">
+    <div class="page-header " data-parallax="true" style="margin-top:-1.5rem;background-image: url('http://localhost/sheneedslab/public/img/h3.jpg');background-size: 100% 100%;width: 100%;
+    height: 11rem; ">
         <div class="container text-center">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="title">She Needs Lab.</h1>
-                </div>
-            </div>
+            
         </div>
     </div>
 
     <div class="main main-raised">
-        <div class="container" style="padding-top:0.5rem; margin-top:30px">
+        <div class="container">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Create Request<i class="material-icons">assignment</i>
             </button>
            
-            <div class="text-center">
+            <!-- <div class="text-center"> -->
+            
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
-                <h2 class="title">Request List</h2>
+                <h3 class="text-center">Request List</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <!-- <div class="team-player"> -->
@@ -31,11 +29,11 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">#</th>
-                                            <th>Title</th>
-                                            <th>Category</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Title</th>
+                                            <th class="text-center">Category</th>
+                                            <th class="text-center">Date</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,63 +43,53 @@
                                                 <td class="text-center">{{$key+1}}</td>
                                                 <td>{{ $request->title }}</td>
                                                 @if($request->category_id == 1)
-                                                    <td>Kuliah</td>
+                                                    <td class="text-center">Kuliah</td>
                                                 @else
-                                                    <td>Himpunan</td>
+                                                    <td class="text-center">Himpunan</td>
                                                 @endif
                                                 
                                                 
-                                                <td>{{ $request->date }}</td>
+                                                <td class="text-center">{{ $request->date }}</td>
                                                 
-                                                <td>
-                                                @if ($request->status <0)
-                                                <p style="color:#d04e44"><b>ON PROCESS</b></p>REJECTED</b></p>
-                                                @elsif ($request->status >0)
-                                                <p style="color:#35b546"><b>ON PROCESS</b></p>APPROVED</b></p>
+                                                <td class="text-center">
+                                                @if ($request->status < 0)
+                                                <p style="color:#d04e44"><b>REJECTED</b></p>
+                                                @elseif ($request->status > 0)
+                                                <p style="color:#35b546"><b>APPROVED</b></p>
                                                 @else
                                                 <p style="color:#f4a103"><b>ON PROCESS</b></p>
                                                 @endif
                                                 </td>
                                                     
-                                                <td class="">
-                                                    <button type="button" rel="tooltip" class="btn btn-sm btn-info" data-toggle="modal" data-target="#{{$request->id}}">
+                                                <td class="td-actions text-right"">
+                                                    <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#{{$request->id}}">
                                                         Detail
                                                     </button>
                                                     @if($request->status == 10)
-                                                        <a type="button" rel="tooltip" class="btn btn-sm btn-info" href="/user/cetaksurat/{{$request->id}}" target="_blank" ><i class="material-icons">printer</i></a>
+                                                    <a href="/user/cetaksurat/{{$request->id}}" target="_blank" >
+                                                    <button type="button" rel="tooltip" class="btn btn-info">
+                                                    <i class="material-icons">printer</i>Surat
+                                                    </button>
+                                                    </a>
+                                                        
                                                     @endif
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>  
-                                <nav aria-label="...">
-
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                        
-                                        <span class="page-link">{{ $requests->links() }}Previous</span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active">
-                                        <span class="page-link">
-                                            2
-                                            <span class="sr-only">(current)</span>
-                                        </span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                
+                                <div class="text-center">
+                                {{ $requests->links() }}
+                                    
+                                </div>
                                 </div>
                                 <!-- Large modal -->
 
                             <!-- </div> -->
                         </div>
                     </div>
-            </div>
+            <!-- </div> -->
         </div>
     </div>
 
@@ -124,8 +112,8 @@
                         <label for="title" class="" style="color:#009688">category</label>
                         <select name="category" class="selectpicker form-control" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
                             <option disabled selected> choose category</option>
-                            @foreach ($category as $cat)
-                            <option value="1">{{$cat->name}}</option>
+                            @foreach ($category as $key =>  $cat)
+                            <option value="{{$key+1}}">{{$cat->name}}</option>
                             @endforeach
                         </select>
                     </div>
