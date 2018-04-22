@@ -6,20 +6,26 @@
 <body class="landing-page" style="background-color:#ceabf1">
     
     <div class="page-header " data-parallax="true" style="margin-top:-1.5rem;background-image: url('http://localhost/sheneedslab/public/img/h3.jpg');background-size: 100% 100%;width: 100%;
-    height: 11rem; ">
+    height: 12rem; ">
         <div class="container text-center">
             
         </div>
     </div>
     <div class="main main-raised">
-        <div class="container" style="padding-top:1rem;">
-        <button class="btn btn-round btn-danger" style="margin-top:1rem;float:right">
-                <i class="material-icons">exit_to_app</i>
-                LogOut
-            </button>
-            <div class="text-center">
+        <div class="container">
+            <a href="{{ url('/logout') }}">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate"><i class="material-icons">assignment</i> History Request
+                </button>
+            </a>
+            <a href="{{ url('/logout') }}">
+                <button class="btn btn-round btn-danger" style="float:right">
+                    <i class="material-icons">exit_to_app</i>
+                        Logout
+                </button>
+            </a>
+            <!-- <div class="text-center"> -->
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
-                <h2 class="title">Request List</h2>
+            <h3 class="text-center">Request List</h3>
                     <div class="row">
                         <div class="col-md-12">
                             <!-- <div class="team-player"> -->
@@ -83,7 +89,7 @@
                             <!-- </div> -->
                         </div>
                     </div>
-            </div>
+            <!-- </div> -->
         </div>
     </div>
 
