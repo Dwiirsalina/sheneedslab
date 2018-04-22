@@ -26,8 +26,7 @@ class SuratController extends Controller
             else {
                 $data['lodgers'] = null;
                 return 404;
-            }
-            
+            }       
         }
     }
 }

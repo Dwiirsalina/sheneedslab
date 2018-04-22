@@ -7,6 +7,7 @@ use App\Model\RequestForm;
 use App\Model\Lodger;
 use App\Model\Role;
 use App\Model\Category;
+use PDF;
 use Auth;
 use DB;
 use Uuid;
@@ -123,5 +124,27 @@ class RequestsController extends Controller
     		return FALSE;
     	}
     	return TRUE;
+    }
+
+    public function userCetak($id){
+        $request = RequestForm::where([['id', '=', $id], ['status', '=', '10']])->first();
+        if($request != null){
+            $data['lodgers'] = Lodger::where('request_id', $id)->with('user')->get();
+            
+            if(count($data['lodgers']) > 0){
+                $pdf = PDF::loadView('user.surat', $data);
+                $pdf->setPaper('A4', 'potrait');
+                $name = "Surat izin" . ".pdf";
+                return $pdf->stream($name);
+            }
+            else {
+                $data['lodgers'] = null;
+                echo "error";
+                return redirect('/home');
+            }       
+        }
+        else{
+            return 404;
+        }
     }
 }
