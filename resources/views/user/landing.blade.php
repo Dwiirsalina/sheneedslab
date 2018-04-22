@@ -43,7 +43,7 @@
                     <h1 class="title">She Needs Lab</h1>
                     <h4>Tidurku tak nyenyak, tugasku pun tak kunjung selesai.<br>Kami kaum wanita juga butuh fasilitas Lab!</h4>
                     <br>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
+                    <a href="/login" target="_blank" class="btn btn-danger btn-raised btn-lg">
                         Log In
                     </a>
                 </div>

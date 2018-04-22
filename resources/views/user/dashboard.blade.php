@@ -63,12 +63,12 @@
                                                 @endif
                                                 </td>
                                                     
-                                                <td class="td-actions">
-                                                    <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#{{$request->id}}">
+                                                <td class="">
+                                                    <button type="button" rel="tooltip" class="btn btn-sm btn-info" data-toggle="modal" data-target="#{{$request->id}}">
                                                         Detail
                                                     </button>
                                                     @if($request->status == 10)
-                                                        <a type="button" rel="tooltip" class="btn btn-info" href="/user/cetaksurat/{{$request->id}}" target="_blank" ><i class="material-icons">printer</i></a>
+                                                        <a type="button" rel="tooltip" class="btn btn-sm btn-info" href="/user/cetaksurat/{{$request->id}}" target="_blank" ><i class="material-icons">printer</i></a>
                                                     @endif
                                                 </td>
                                             </tr>
