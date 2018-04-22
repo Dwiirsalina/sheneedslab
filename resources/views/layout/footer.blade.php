@@ -33,6 +33,8 @@
             </div>
         </div>
     </footer>
+
+
     <!--   Core JS Files   -->
 <!--   Core JS Files   -->
 <script src="{{asset('js/core/jquery.min.js')}}"></script>

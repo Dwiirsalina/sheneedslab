@@ -11,7 +11,7 @@ class Category extends Model
     public $incrementing = true;
     public $timestamp = false;
 
-    pbulic function request(){
+    public function request(){
     	return $this->belongsTo('App\Model\RequestForm', 'id', 'id');
     }
 
