@@ -16,10 +16,12 @@
         <div class="container">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate"><i class="material-icons">assignment</i> Create Request
             </button>
-            <button class="btn btn-round btn-danger" style="float:right">
-                <i class="material-icons">exit_to_app</i>
-                LogOut
-            </button>
+            <a href="{{ url('/logout') }}">
+                <button class="btn btn-round btn-danger" style="float:right">
+                    <i class="material-icons">exit_to_app</i>
+                        Logout
+                </button>
+            </a>
            
             <!-- <div class="text-center"> -->
             
@@ -122,16 +124,20 @@
                         </select>
                     </div>
                     <div class="">
-                        <label for="title" class=""style="color:#009688">title</label>
+                        <label for="Title" class=""style="color:#009688">title</label>
                         <input name="title" type="text" class="form-control" >
                     </div>
                     <div class="">
-                        <label for="desc" class=""style="color:#009688">desc</label>
+                        <label for="Desc" class=""style="color:#009688">desc</label>
                         <textarea class="form-control" name="description" rows="3"></textarea>
                     </div>
                     <div class="">
-                        <label for="title" class=""style="color:#009688">location</label>
+                        <label for="Location" class=""style="color:#009688">location</label>
                         <input name="location" type="text" class="form-control" >
+                    </div>
+                    <div class="">
+                        <label for="Date" class=""style="color:#009688">Date</label>
+                        <input type="text" class="form-control" readonly value="{{date("Y-m-d")}}">
                     </div>
                     <div class="repeater">
                         <div class="" id="nrp1">
@@ -173,15 +179,15 @@
                     @else
                         <p>Himpunan</p>
                     @endif
-                <span class="info-title" style="color:#1ab1f5">title</span>
+                <span class="info-title" style="color:#1ab1f5">Title</span>
                     <p>{{$request->title}}</p>
-                <span class="info-title" style="color:#1ab1f5">date</span>
+                <span class="info-title" style="color:#1ab1f5">Date</span>
                     <p>{{$request->date}}</p>
-                <span class="info-title" style="color:#1ab1f5">location</span>
-                    <p>Kuliah</p>
-                <span class="info-title" style="color:#1ab1f5">description</span>
+                <span class="info-title" style="color:#1ab1f5">Location</span>
+                    <p>LP</p>
+                <span class="info-title" style="color:#1ab1f5">Description</span>
                     <p>{{$request->description}}</p>
-                <span class="info-title" style="color:#1ab1f5">penginap</span>
+                <span class="info-title" style="color:#1ab1f5">Penginap</span>
                     <p>penginap</p>
                 <div class="row">
                     <div class="col-md-2"><span class="info-title">LP</span>

@@ -17,7 +17,7 @@ class RequestsController extends Controller
     public function userDashboard(Request $req)
     {
     	try {
-    		$requests = RequestForm::where('user_id', Auth::user()->id)->with('lodgers')->paginate(3);
+    		$requests = RequestForm::where('user_id', Auth::user()->id)->with('lodgers')->orderBy('created_at', 'desc')->paginate(15);
     		$data['roles'] = Role::get();
     		$data['category'] = Category::get();
 
@@ -58,7 +58,8 @@ class RequestsController extends Controller
     		$new_form = new RequestForm();
             $new_form->id = $id;
     		$new_form->user_id = $user_id;
-    		$new_form->date = $req['date'];
+    		$new_form->date = date("Y-m-d");
+            $new_form->location = $req['location'];
             $new_form->status = 0;
     		$new_form->category_id = $req['category'];
     		$new_form->title = $req['title'];
