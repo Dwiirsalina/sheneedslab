@@ -28,5 +28,5 @@ Route::get('/user/dummy', 'RequestsController@dummyPost');
 
 // Route::get('/admin/dashboard', 'AuthController@home');
 Route::get('/admin/dashboard', 'AdminController@getHistoryAdminDashboard');
-
+Route::get('/admin/connected', 'AdminController@connected');
 Route::get('/user/cetaksurat/{id}', 'SuratController@cetak');

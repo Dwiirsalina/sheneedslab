@@ -5,7 +5,7 @@
 
 <body class="landing-page" >
     <div class="page-header header-filter" data-parallax="true" 
-    style=" background-image: url('http://localhost/sheneedslab/public/img/bg2.jpeg'); ">
+    style=" background-image: url('{{url("img/bg2.jpeg")}}'); ">
     <div class="container text-center">
             <div class="row">
                 <div class="col-md-12">
@@ -18,7 +18,12 @@
         <div class="container" style="padding-top:0.5rem">
             <div class="text-center">
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Large modal</button> -->
-                <h2 class="title">Request List</h2>
+            <a class="btn btn-success btn-round" href="#" target="_blank" 
+                                    onclick="window.open('https://notify-bot.line.me/oauth/authorize?client_id=8wlegGyCdDpQvGZUUf9SPC&redirect_uri={{url("admin/connected")}}&response_type=code&scope=notify&state={{ csrf_token() }}', 
+                                    'newwindow', 
+                                    'width=800,height=600'); 
+                                    return false;">Connect to LINE</a>    
+            <h2 class="title">Request List</h2>
                     <div class="row">
                         <div class="col-md-12">
                             <!-- <div class="team-player"> -->
@@ -36,9 +41,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                          @foreach ($requests as $request)
+                                          @foreach ($requests as $key => $request)
                                         <tr>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{$key+1}}</td>
                                             <td>{{ $request->title }}</td>
                                             <td>{{ $request->category }}</td>
                                             <td>{{ $request->date }}</td>
