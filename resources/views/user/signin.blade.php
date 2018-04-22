@@ -1,7 +1,7 @@
 <html lang="en">
 @include('layout.head')
 
-<body class="signup-page " style="padding-top:5rem;background-image: url('http://localhost/sheneedslab/public/img/bglp.jpg');background-size:cover;">
+<body class="signup-page " style="padding-top:5rem;background-image: url('{{url("img/bglp.jpg")}}');background-size:cover;">
     <div class="page-header">
         <div class="container">
             <div class="row">

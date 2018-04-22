@@ -5,7 +5,7 @@
 
 <body class="landing-page" >
     <div class="page-header header-filter" data-parallax="true" 
-    style=" background-image: url('http://localhost/sheneedslab/public/img/bg2.jpeg'); ">
+    style=" background-image: url('{{url("img/bg2.jpeg")}}'); ">
     <div class="container text-center">
             <div class="row">
                 <div class="col-md-12">

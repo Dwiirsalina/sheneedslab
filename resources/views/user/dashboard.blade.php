@@ -5,7 +5,7 @@
 
 <body class="landing-page" style="background-color:#ceabf1">
     
-    <div class="page-header " data-parallax="true" style="margin-top:-1.5rem;background-image: url('http://localhost/sheneedslab/public/img/h3.jpg');background-size: 100% 100%;width: 100%;
+    <div class="page-header " data-parallax="true" style="margin-top:-1.5rem;background-image: url('{{url("img/h3.jpg")}}');background-size: 100% 100%;width: 100%;
     height: 12rem; ">
         <div class="container text-center">
             

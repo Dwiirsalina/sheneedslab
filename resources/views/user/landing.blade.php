@@ -36,7 +36,7 @@
             </div>
         </div>
     </nav>
-    <div class="page-header header-filter" data-parallax="true" style=" background-image: url('http://localhost/sheneedslab/public/img/monster_girl.gif') ">
+    <div class="page-header header-filter" data-parallax="true" style=" background-image: url('{{url("img/monster_girl.gif")}}') ">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
