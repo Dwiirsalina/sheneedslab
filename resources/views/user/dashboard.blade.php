@@ -286,7 +286,6 @@
                     lodgerCount++;
                 })
                 $("#"+$id).modal('show');
-              $( this ).addClass( "done" );
             });            
         }       
     </script>

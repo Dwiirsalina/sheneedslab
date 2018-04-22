@@ -63,7 +63,7 @@
                                                 @endif
                                                 </td>
                                             <td class="td-actions text-center">
-                                                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" data-target="#modalAccept{{$key}}"><i class="material-icons">person</i>
+                                                <button type="button" rel="tooltip" class="btn btn-info" data-toggle="modal" onclick="prepareModal('{{$request->id}}');" <i class="material-icons">person</i>
                                                     Detail
                                                 </button>
                                                 <!-- <button type="button" rel="tooltip" class="btn btn-success">
@@ -94,7 +94,7 @@
     </div>
 
     @foreach($requests as $key => $request)
-            <div class="modal fade" id="modalAccept{{$key}}" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
+            <div class="modal fade" id="modalAccept{{$request->id}}" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -122,7 +122,9 @@
                 <span class="info-title" style="color:#1ab1f5">Description</span>
                     <p>{{$request->description}}</p>
                 <span class="info-title" style="color:#1ab1f5">Penginap</span>
-                    <p>penginap</p><br>
+                    <div id="lodgerDiv{{$request->id}}">
+                        
+                    </div>
                   <div class="form">
                     <label for="Select{{$key}}" class="info-title" style="color:#1ab1f5">Pilih Approve / Reject</label>
                     <select onchange="checkReject({{$key}});" name="confirmation{{$request->slug}}" class="form-control" id="Select{{$key}}">
@@ -182,6 +184,29 @@
       }
       return TRUE;
     }
+
+    function prepareModal($id) {
+            $.ajax({
+              url: "{{url('user/dashboard/check')}}?user="+$id,
+              context: document.body
+            }).done(function(response) {
+                // console.log(response);
+                var itemCount = 0;
+
+                var reason_list = JSON.parse(response);
+                console.log(reason_list.lodger);
+                $("#infoDiv"+$id).empty();
+                var lodgerCount = 1;
+                $("#lodgerDiv"+$id).empty();
+                reason_list.lodger.forEach(function(row){
+                    // console.log(row.user);
+                    if(row.user != null)
+                        $("#lodgerDiv"+$id).append(`<p>`+lodgerCount+`. `+row.user.name+`</p>`);
+                    lodgerCount++;
+                })
+                $("#modalAccept"+$id).modal('show');
+            });            
+        }
 </script>
 
 </body>
