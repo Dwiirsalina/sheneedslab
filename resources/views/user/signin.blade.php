@@ -71,11 +71,6 @@
                                     </form>
                                 </div>
                             </div>
-                                <a class="btn btn-success btn-round" href="#" target="_blank" 
-                                    onclick="window.open('https://notify-bot.line.me/oauth/authorize?client_id=8wlegGyCdDpQvGZUUf9SPC&redirect_uri=http://192.168.33.15:8000/&response_type=code&scope=notify&state=sadf', 
-                                    'newwindow', 
-                                    'width=800,height=600'); 
-                                    return false;">Connect to LINE</a>
                                 <div class="col-md-4 mr-auto ml-auto">
                                     <br>
                                     <br>

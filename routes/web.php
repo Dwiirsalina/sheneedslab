@@ -35,9 +35,9 @@ Route::middleware(['auth'])->group(function(){
 		Route::get('/user/dummy', 'RequestsController@dummyPost');
 	});
 
-	// Route::get('/admin/dashboard', 'AuthController@home');
 	Route::middleware(['admin'])->group(function(){
-		Route::get('/admin/dashboard', 'AdminController@getAdminHistory');
+        Route::get('/admin/dashboard', 'AdminController@getAdminHistory');
+        Route::get('/admin/connected', 'AdminController@connected');
 		Route::post('/admin/dashboard/confirm/{slug}', 'AdminController@confirm');
 		Route::get('/admin/history', 'AdminController@adminHistory');
 	});
