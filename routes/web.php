@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function(){
 	
 	Route::middleware(['user'])->group(function(){
 		Route::get('/user/dashboard', 'RequestsController@userDashboard');
+		Route::get('/user/dashboard/check', 'RequestsController@dashboardCheck');
 		Route::post('/user/dashboard/form', 'RequestsController@createForm');
 		Route::get('/user/dummy', 'RequestsController@dummyPost');
 	});
